@@ -142,8 +142,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Clientes.cs" />
-    <Compile Include="Models\Lugares.cs" />
+    <Compile Include="Models\Reservas.cs" />
     <Compile Include="Models\ReservasDB.cs" />
     <Compile Include="Models\Tecnicos.cs" />
     <Compile Include="Models\Viaturas.cs" />
