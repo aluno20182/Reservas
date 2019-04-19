@@ -23,7 +23,5 @@ namespace Reservas.Models
 
         public DateTime DataValidadeCarta { get; set; }
 
-        //lista das multas associadas à viatura
-        public ICollection<Reservas> ListaDeReservas { get; set; }
     }
 }
