@@ -21,6 +21,14 @@ namespace Reservas.Models
         public virtual DbSet<Tecnicos> Tecnicos { get; set; } // tabela Agentes
         public virtual DbSet<Viaturas> Viaturas { get; set; } // tabela Viaturas
 
+        //Metódo a ser executado no inicio da criação do Modelo, pre construido na especificação da entity framework
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //Elimina a convenção de atribuir automaticamente o 'onDeleteCascade' nas FK's
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }
