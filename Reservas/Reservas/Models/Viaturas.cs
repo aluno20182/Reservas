@@ -24,5 +24,13 @@ namespace Reservas.Models
         public string CodPostalDono { get; set; }
 
 
+        //***************************************
+        //Lista das multas associadas ao agente
+        //***************************************
+
+        //lista das multas associadas à viatura
+        public ICollection<Reservas> ListaDeReservas { get; set; }
+
+
     }
 }
