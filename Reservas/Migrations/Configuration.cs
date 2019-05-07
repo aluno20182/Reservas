@@ -114,7 +114,7 @@ namespace Reservas.Migrations
             //*********************************************************************
             // adiciona Reservas
             var reservas = new List<Reservas> {
-               new Reservas {ID=7, LocalDaReserva="Abrantes", DataDaEntrada=new DateTime(2017,3,9), ViaturaFK=10, ClienteFK=17, TecnicoFK=1 },
+               new Reservas {ID=7, LocalDaReserva="Abrantes", DataDaEntrada=new DateTime(2017, 3, 9, 3, 57, 11), ViaturaFK=10, ClienteFK=17, TecnicoFK=1 },
                new Reservas {ID=23, LocalDaReserva="Abrantes", DataDaEntrada=new DateTime(2017,8,9), ViaturaFK=15, ClienteFK=23, TecnicoFK=1 },
                new Reservas {ID=26, LocalDaReserva="Abrantes", DataDaEntrada=new DateTime(2017,8,18), ViaturaFK=17, ClienteFK=6, TecnicoFK=1 },
                new Reservas {ID=64, LocalDaReserva="Abrantes", DataDaEntrada=new DateTime(2017,3,24), ViaturaFK=5, ClienteFK=16, TecnicoFK=1 },

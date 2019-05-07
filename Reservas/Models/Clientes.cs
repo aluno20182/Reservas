@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,8 @@ namespace Reservas.Models
 
         public string BI { get; set; }
 
+        public string NIF { get; set; }
+
         public string Telemovel { get; set; }
 
         public string Email { get; set; }
@@ -25,10 +28,17 @@ namespace Reservas.Models
 
         public DateTime DataValidadeCarta { get; set; }
 
-        public int NIF { get; set; }
+        
 
         public string MetodoDePagamento { get; set; }
 
+        //  *************************************
+        //  Criação das chaves Forasteiras
+        //  *************************************
+
+        //  FK para Viatura
+        [ForeignKey("Viatura")]  //Anotações são feitas sobre o objeto que está por baixo
+        public int ViaturaFK { get; set; }  //Base de Dados
 
 
         public ICollection<Reservas> ListaDeReservas { get; set; }

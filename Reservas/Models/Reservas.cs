@@ -10,8 +10,6 @@ namespace Reservas.Models
     {
         public int ID { get; set; }
 
-        public string IdCliente { get; set; }
-
         public string LocalDaReserva { get; set; }
 
         public DateTime DataDaEntrada { get; set; }
@@ -28,19 +26,18 @@ namespace Reservas.Models
 
         public Viaturas Viatura { get; set; }   // C#
 
+
         [ForeignKey("Tecnico")]  //Anotações são feitas sobre o objeto que está por baixo
         public int TecnicoFK { get; set; }  //Base de Dados
 
         public Tecnicos Tecnico { get; set; }   // C#
 
+        
         [ForeignKey("Cliente")]  //Anotações são feitas sobre o objeto que está por baixo
         public int ClienteFK { get; set; }  //Base de Dados
 
         public Clientes Cliente { get; set; }   // C#
 
-
-
-        public ICollection<Reservas> ListaDeReserva { get; set; }
-
     }
 }
+ 
