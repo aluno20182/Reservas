@@ -14,7 +14,9 @@ namespace Reservas.Models
 
         public string LocalDaReserva { get; set; }
 
-        public DateTime DataDaReserva { get; set; }
+        public DateTime DataDaEntrada { get; set; }
+
+        public DateTime? DataDaSaida { get; set; }
 
         //  *************************************
         //  Criação das chaves Forasteiras
@@ -37,11 +39,7 @@ namespace Reservas.Models
         public Clientes Cliente { get; set; }   // C#
 
 
-        //***************************************
-        //Lista das multas associadas ao agente
-        //***************************************
 
-        //lista das multas associadas à viatura
         public ICollection<Reservas> ListaDeReserva { get; set; }
 
     }

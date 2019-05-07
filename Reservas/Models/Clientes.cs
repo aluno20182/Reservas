@@ -15,6 +15,8 @@ namespace Reservas.Models
 
         public string Telemovel { get; set; }
 
+        public string Email { get; set; }
+
         public DateTime DataNascimento { get; set; }
 
         public string NumCartaConducao { get; set; }
@@ -23,12 +25,12 @@ namespace Reservas.Models
 
         public DateTime DataValidadeCarta { get; set; }
 
+        public int NIF { get; set; }
 
-        //***************************************
-        //Lista das multas associadas ao agente
-        //***************************************
+        public string MetodoDePagamento { get; set; }
 
-        //lista das multas associadas à viatura
+
+
         public ICollection<Reservas> ListaDeReservas { get; set; }
 
     }

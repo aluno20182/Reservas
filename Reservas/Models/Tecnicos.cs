@@ -16,11 +16,7 @@ namespace Reservas.Models
         public string Fotografia { get; set; }
 
 
-        //***************************************
-        //Lista das multas associadas ao agente
-        //***************************************
 
-        //lista das multas associadas à viatura
         public ICollection<Reservas> ListaDeReservas { get; set; }
 
 
