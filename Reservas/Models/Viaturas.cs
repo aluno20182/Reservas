@@ -15,9 +15,11 @@ namespace Reservas.Models
 
         public string Modelo { get; set; }
 
+        public string NomeDono { get; set; }
 
+        public string  MoradaDono { get; set; }
 
-
+        public string CodPostalDono { get; set; }
         //***************************************
         //Lista das multas associadas ao agente
         //***************************************
