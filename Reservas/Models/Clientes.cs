@@ -28,8 +28,6 @@ namespace Reservas.Models
 
         public DateTime DataValidadeCarta { get; set; }
 
-        
-
         public string MetodoDePagamento { get; set; }
 
         //  *************************************

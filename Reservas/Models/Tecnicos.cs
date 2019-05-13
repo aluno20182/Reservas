@@ -15,6 +15,10 @@ namespace Reservas.Models
 
         public string Fotografia { get; set; }
 
+        //  *************************************
+        //  Criação das chaves Forasteiras
+        //  *************************************
+
 
 
         public ICollection<Reservas> ListaDeReservas { get; set; }

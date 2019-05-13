@@ -15,6 +15,10 @@ namespace Reservas.Models
 
         public string Modelo { get; set; }
 
+        //  *************************************
+        //  Criação das chaves Forasteiras
+        //  *************************************
+
 
 
 
