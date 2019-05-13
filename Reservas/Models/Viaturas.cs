@@ -15,13 +15,11 @@ namespace Reservas.Models
 
         public string Modelo { get; set; }
 
-        //  *************************************
-        //  Criação das chaves Forasteiras
-        //  *************************************
+        public string NomeDono { get; set; }
 
+        public string  MoradaDono { get; set; }
 
-
-
+        public string CodPostalDono { get; set; }
         //***************************************
         //Lista das multas associadas ao agente
         //***************************************

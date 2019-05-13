@@ -35,8 +35,8 @@ namespace Reservas.Models
         //  *************************************
 
         //  FK para Viatura
-        [ForeignKey("Viatura")]  //Anotações são feitas sobre o objeto que está por baixo
-        public int ViaturaFK { get; set; }  //Base de Dados
+        //[ForeignKey("Viatura")]  //Anotações são feitas sobre o objeto que está por baixo
+        //public int ViaturaFK { get; set; }  //Base de Dados
 
 
         public ICollection<Reservas> ListaDeReservas { get; set; }
