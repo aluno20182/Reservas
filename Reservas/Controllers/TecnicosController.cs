@@ -16,7 +16,7 @@ namespace Reservas.Controllers
     {
 
         // cria VAR que representa a BD
-        private ReservasDB db = new ReservasDB();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tecnicos
         public ActionResult Index()
@@ -61,7 +61,7 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnicos,                                                                    HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnicos, HttpPostedFileBase fotografia)
         {
             /// precisamos de processar a fotografia
             /// 1º será q foi fornecido um ficheiro?

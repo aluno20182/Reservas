@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -44,5 +45,14 @@ namespace Reservas.Models
         public virtual DbSet<Tecnicos> Tecnicos { get; set; } // tabela Tecnicos
         public virtual DbSet<Clientes> Clientes { get; set; } // tabela Clientes
         public virtual DbSet<Viaturas> Viaturas { get; set; } // tabela Viaturas
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }

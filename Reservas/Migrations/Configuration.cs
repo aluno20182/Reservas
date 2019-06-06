@@ -7,14 +7,14 @@ namespace Reservas.Migrations
     using System.Linq;
     using Reservas.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ReservasDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(ReservasDB context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
