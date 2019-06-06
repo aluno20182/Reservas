@@ -105,9 +105,19 @@ namespace Reservas.Controllers
 
             if (ModelState.IsValid)
             {
+                // valida se os dados fornecidos estão de acordo 
+                // com as regras definidas na especificação do Modelo
+                try { 
                 db.Tecnicos.Add(tecnicos);
                 db.SaveChanges();
+                if (haFoto) fotografia.SaveAs(caminho);
                 return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "Ocorreu um erro com a escrita " +
+                                             "dos dados do novo Tecnico");
+                }
             }
 
             return View(tecnicos);
