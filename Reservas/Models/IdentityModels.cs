@@ -1,0 +1,48 @@
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
+namespace Reservas.Models
+{
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    public class ApplicationUser : IdentityUser
+    {
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
+    }
+    /// <summary>
+    /// representa a criação da Base de Dados da Autenticação
+    /// </summary>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext()
+            : base("ReservasDBConnectionString", throwIfV1Schema: false)
+        {
+        }
+
+        static ApplicationDbContext()
+        {
+            // Set the database intializer which is run once during application start
+            // This seeds the database with admin user credentials and admin role
+            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
+        // vamos colocar, aqui, as instruções relativas às tabelas do 'negócio'
+        // descrever os nomes das tabelas na Base de Dados
+        public virtual DbSet<Reservas> Reservas { get; set; } // tabela Reservas
+        public virtual DbSet<Tecnicos> Tecnicos { get; set; } // tabela Tecnicos
+        public virtual DbSet<Clientes> Clientes { get; set; } // tabela Clientes
+        public virtual DbSet<Viaturas> Viaturas { get; set; } // tabela Viaturas
+    }
+}
