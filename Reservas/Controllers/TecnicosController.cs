@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Reservas.Models;
 
 namespace Reservas.Controllers
@@ -15,16 +16,31 @@ namespace Reservas.Controllers
     public class TecnicosController : Controller    {
 
         // cria VAR que representa a BD
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ReservasDB db = new ReservasDB();
 
         // GET: Tecnicos
+        [Authorize(Roles = "RecursosHumanos,Agentes")] // além de AUTENTICADO,
+        // só os utilizadores do tipo RecursosHumanos ou Agentes têm acesso
+        // só precisa de pertencer a uma delas...
+        //*****************************************************
+        ////[Authorize(Roles = "RecursosHumanos")]  // exemplo de uma situação em que 
+        ////[Authorize(Roles = "Agentes")]          // os utilizadores TÊM AS DUAS Roles
         public ActionResult Index()
         {
+
             // procura a totalidade dos Agentes na BD
 
             // Instrução feita em LINQ
             // SELECT * FROM Agentes ORDER BY nome
             var listaTecnicos = db.Tecnicos.OrderBy(a => a.Nome).ToList();
+            // filtrar os dados se a pessoa
+            // NÃO pertence ao role 'RecursoHumanos' 
+            if (!User.IsInRole("RecursosHumanos"))
+            {
+                // mostrar apenas os dados da pessoa
+                string userID = User.Identity.GetUserId();
+                listaTecnicos = listaTecnicos.Where(a => a.UserNameID == userID).ToList();
+            }
 
             return View(listaTecnicos);
         }
@@ -48,10 +64,30 @@ namespace Reservas.Controllers
             }
             Session["Metodo"] = "";
 
-            return View(tecnico);
+            // se cheguei aqui, o Tecnico foi encontrado na BD
+            // será que tenho autorização para aceder aos seus dados?
+            if (User.IsInRole("RecursosHumanos") ||
+               User.IsInRole("GestorResrvas") ||
+               tecnico.UserNameID == User.Identity.GetUserId())
+            {
+                // se isto se verifica , posso ver os dados do Agente
+                return View(tecnico);
+            }
+            else
+            {
+                // não tenho autorização
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Tecnicos/Create
+        /// <summary>
+        /// mostra a view para carregar os dados de um novo Agente
+        /// </summary>
+        /// <returns></returns>
+        /// 
+        [Authorize(Roles = "RecursosHumanos")]
+
         public ActionResult Create()
         {
             return View();
@@ -60,9 +96,17 @@ namespace Reservas.Controllers
         // POST: Tecnicos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
+        /// <summary>
+        /// recolhe os dados da View, sobre um novo Agente
+        /// </summary>
+        /// <param name="agente">dados do novo Agente</param>
+        /// <param name="fotografia">ficheiro com a foto do novo Agente</param>
+        /// <returns></returns>
+        [Authorize(Roles = "RecursosHumanos")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnicos,                                                                    HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnico, HttpPostedFileBase fotografia)
         {
             /// precisamos de processar a fotografia
             /// 1º será q foi fornecido um ficheiro?
@@ -75,7 +119,7 @@ namespace Reservas.Controllers
             bool haFoto = false;
 
             // há ficheiro?
-            if (fotografia == null)
+            if (haFoto == null)
             {
                 // não há ficheiro,
                 // atribui-se-lhe o avatar
@@ -113,9 +157,19 @@ namespace Reservas.Controllers
             /// ie, valida os dados com o Modelo
             if (ModelState.IsValid)
             {
-                db.Tecnicos.Add(tecnicos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+
+                    /// 5º como o guardar no disco rígido? e onde?
+                    if (haFoto) fotografia.SaveAs(caminho);
+
+                    return RedirectToAction("Index");
+                }
+
+                catch (Exception)
+                {
+                    throw;
+                }
             }
 
              return View(tecnico);
@@ -198,7 +252,7 @@ namespace Reservas.Controllers
             /// - guardar o ID numa var. de sessão 
             ///      (quem estiver a usar o Asp .Net Core já não tem esta ferramenta...)
             /// - outras opções...
-            Session["IdAgente"] = tecnico.ID;
+            Session["IdTecnico"] = tecnico.ID;
             Session["Metodo"] = "Tecnicos/Delete";
 
             // envia para a View os dados do Agente encontrado
