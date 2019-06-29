@@ -10,6 +10,7 @@ namespace Reservas.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -17,28 +18,32 @@ namespace Reservas.Models
             // Add custom user claims here
             return userIdentity;
         }
+
     }
     /// <summary>
-    /// representa a criação da Base de Dados da Autenticação
+    /// apresenta a criação da base de dados
+    /// - dos utilizadores
+    /// - dos dados do 'negócio'
     /// </summary>
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ReservasDB : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("ReservasDBConnectionString", throwIfV1Schema: false)
+        public ReservasDB() 
+                : base("ReservasDBConnectionString", throwIfV1Schema: false)
         {
         }
 
-        static ApplicationDbContext()
+        static ReservasDB()
         {
             // Set the database intializer which is run once during application start
             // This seeds the database with admin user credentials and admin role
-            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            Database.SetInitializer<ReservasDB>(new ApplicationDbInitializer());
         }
 
-        public static ApplicationDbContext Create()
+        public static ReservasDB Create()
         {
-            return new ApplicationDbContext();
+            return new ReservasDB();
         }
+
         // vamos colocar, aqui, as instruções relativas às tabelas do 'negócio'
         // descrever os nomes das tabelas na Base de Dados
         public virtual DbSet<Reservas> Reservas { get; set; } // tabela Reservas
@@ -47,8 +52,10 @@ namespace Reservas.Models
         public virtual DbSet<Viaturas> Viaturas { get; set; } // tabela Viaturas
 
 
+        // método a ser executado no início da criação do Modelo
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // eliminar a convenção de atribuir automaticamente o 'on Delete Cascade' nas FKs
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
