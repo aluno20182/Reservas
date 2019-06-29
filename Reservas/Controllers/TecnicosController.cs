@@ -12,8 +12,7 @@ using Reservas.Models;
 namespace Reservas.Controllers
 {
     [Authorize]//Só pessoas autenticadas podem executar esas tarefas
-    public class TecnicosController : Controller
-    {
+    public class TecnicosController : Controller    {
 
         // cria VAR que representa a BD
         private ReservasDB db = new ReservasDB();
@@ -40,14 +39,16 @@ namespace Reservas.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
-            Tecnicos tecnicos = db.Tecnicos.Find(id);
-            if (tecnicos == null)
+            Tecnicos tecnico = db.Tecnicos.Find(id);
+            if (tecnico == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
-            return View(tecnicos);
+            Session["Metodo"] = "";
+
+            return View(tecnico);
         }
 
         // GET: Tecnicos/Create
@@ -61,7 +62,7 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnicos,                                                                    HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnico, HttpPostedFileBase fotografia)
         {
             /// precisamos de processar a fotografia
             /// 1º será q foi fornecido um ficheiro?
@@ -78,7 +79,7 @@ namespace Reservas.Controllers
             {
                 // não há ficheiro,
                 // atribui-se-lhe o avatar
-                tecnicos.Fotografia = "Default_Avatar.png";
+                tecnico.Fotografia = "Default_Avatar.png";
             }
             else
             {
@@ -87,7 +88,7 @@ namespace Reservas.Controllers
                 if (fotografia.ContentType == "image/jpeg" ||
                    fotografia.ContentType == "image/png")
                 {
-                    // estamos perante uma foto correta
+                    // estamos perante uma foto correta?
                     string extensao = Path.GetExtension(fotografia.FileName).ToLower();
                     Guid g;
                     g = Guid.NewGuid();
@@ -96,21 +97,39 @@ namespace Reservas.Controllers
                     // onde guardar o ficheiro
                     caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
                     // atribuir ao agente o nome do ficheiro
-                    tecnicos.Fotografia = nome;
+                    tecnico.Fotografia = nome;
                     // assinalar q há foto
                     haFoto = true;
                 }
+                else
+                {
+                    // o ficheiro fornecido não é válido
+                    // atribuo a imagem por defeito ao Agente
+                    tecnico.Fotografia = "Default_Avatar.png";
+                }
             }
 
-
+            /// confronta os dados q vêm da view com a forma que os dados devem ter.
+            /// ie, valida os dados com o Modelo
             if (ModelState.IsValid)
             {
-                db.Tecnicos.Add(tecnicos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Tecnicos.Add(tecnico);
+                    db.SaveChanges();
+
+                    /// 5º como o guardar no disco rígido? e onde?
+                    if (haFoto) fotografia.SaveAs(caminho);
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
 
-            return View(tecnicos);
+             return View(tecnico);
         }
 
         // GET: Tecnicos/Edit/5
@@ -145,28 +164,123 @@ namespace Reservas.Controllers
         }
 
         // GET: Tecnicos/Delete/5
+        /// <summary>
+        /// mostra na view os dados de um agente para porterior, eventual, remoção
+        /// </summary>
+        /// <param name="id">identificador do agente a remover</param>
+        /// <returns></returns>
         public ActionResult Delete(int? id)
         {
+            // o ID do agente não foi fornecido
+            // não é possível procurar o Tecnico
+            // o que devo fazer?
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ///  opção por defeito do 'template'
+                ///  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                /// e não há ID do Tecnico, uma de duas coisas aconteceu:
+                ///   - há um erro nos links da aplicação
+                ///   - há um 'chico experto' a fazer asneiras no URL
+
+                /// redireciono o utilzador para o ecrã incial
+                return RedirectToAction("Index");
             }
-            Tecnicos tecnicos = db.Tecnicos.Find(id);
-            if (tecnicos == null)
+
+            // procura os dados do Agentes, cujo ID é fornecido
+            Tecnicos tecnico = db.Tecnicos.Find(id);
+
+
+            /// se o agente não fôr encontrado
+            if (tecnico == null)
             {
-                return HttpNotFound();
+                // ou há um erro,
+                // ou há um 'chico experto'...
+                //   return HttpNotFound();
+
+                /// redireciono o utilzador para o ecrã incial
+                return RedirectToAction("Index");
             }
-            return View(tecnicos);
+
+            /// para o caso do utilizador alterar, de forma fraudulenta,
+            /// os dados do Tecnico, vamos guardá-los internamente
+            /// Para isso, vou guardar o valor do ID do Tecnico
+            /// - guardar o ID do Tecnico num cookie cifrado
+            /// - guardar o ID numa var. de sessão 
+            ///      (quem estiver a usar o Asp .Net Core já não tem esta ferramenta...)
+            /// - outras opções...
+            Session["IdAgente"] = tecnico.ID;
+            Session["Metodo"] = "Tecnicos/Delete";
+
+            // envia para a View os dados do Agente encontrado
+            return View(tecnico);
         }
 
         // POST: Tecnicos/Delete/5
+        /// <summary>
+        /// concretizar a operação de remoção de um agente
+        /// </summary>
+        /// <param name="id"> identificador do agente</param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
-            Tecnicos tecnicos = db.Tecnicos.Find(id);
-            db.Tecnicos.Remove(tecnicos);
-            db.SaveChanges();
+
+            if (id == null)
+            {
+                // se entrei aqui,é porque é pq há um erro
+                // nao se sabe o ID do tecnico a remover
+                return RedirectToAction("Index");
+            }
+
+            // avaliar se o ID do tecnico que é fornecido
+            // é o mesmo ID do tecnico que foi apresentado no ecrã
+            if (id != (int)Session["IdTecnico"])
+            {
+                // há um ataque!
+                // redirecionar para a página de Index
+                return RedirectToAction("Index");
+            }
+
+            // avaliar se o método é o que é esperado
+            string operacao = "Tecnicos/Delete";
+            if (operacao != (string)Session["Metodo"])
+            {
+                // há um ataque!
+                // redirecionar para a página de Index
+                return RedirectToAction("Index");
+            }
+
+            // procura os dados do Agente, na BD
+            Tecnicos tecnico = db.Tecnicos.Find(id);
+
+            if (tecnico == null)
+            {
+                // não foi possível encontrar o Agente
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                db.Tecnicos.Remove(tecnico);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                // captura a excessão e processa o código para resolver o problema
+                // pode haver mais do que um 'catch' associado a um 'try'
+
+                // enviar mensagem de erro para o utilizador
+                ModelState.AddModelError("", "Ocorreu um erro com a eliminação do Agente "
+                                            + tecnico.Nome +
+                                            ". Provavelmente relacionado com o facto do " +
+                                            "tecnico ter gerido uma reserva...");
+                // devolver os dados do Tecnico à View
+                return View(tecnico);
+            }
+
+            // redireciona o interface para a view INDEX associada ao controller Tecnicos
             return RedirectToAction("Index");
         }
 
