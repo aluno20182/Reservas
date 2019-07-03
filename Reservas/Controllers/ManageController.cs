@@ -40,12 +40,12 @@ namespace Reservas.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "A sua palavra passe foi alterada."
-                : message == ManageMessageId.SetPasswordSuccess ? "A sua palavra passe foi definida."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "O factor de dois passos foi definido."
-                : message == ManageMessageId.Error ? "Ocorreu um erro."
-                : message == ManageMessageId.AddPhoneSuccess ? "O seu numero de telemovel foi adicionado."
-                : message == ManageMessageId.RemovePhoneSuccess ? "O seu numero de telemovel foi removido."
+                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two factor provider has been set."
+                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -120,7 +120,7 @@ namespace Reservas.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "O numero de segurança é: " + code
+                    Body = "Your security code is: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }
@@ -188,7 +188,7 @@ namespace Reservas.Controllers
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            ViewBag.Status = "Apenas para testes, o código atual é: " + code;
+            ViewBag.Status = "For DEMO purposes only, the current code is " + code;
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
@@ -214,7 +214,7 @@ namespace Reservas.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Erro ao verificar o telemovel");
+            ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
 
@@ -309,8 +309,8 @@ namespace Reservas.Controllers
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "O login externo foi removido."
-                : message == ManageMessageId.Error ? "Ocorreu um erro."
+                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
