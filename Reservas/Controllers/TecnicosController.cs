@@ -19,30 +19,32 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Tecnicos
-        [Authorize(Roles = "RecursosHumanos,Agentes")] // além de AUTENTICADO,
-        // só os utilizadores do tipo RecursosHumanos ou Agentes têm acesso
+        [Authorize(Roles = "RecursosHumanos,Tecnicos")] // além de AUTENTICADO,
+        // só os utilizadores do tipo RecursosHumanos ou Tecnicos têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
         ////[Authorize(Roles = "RecursosHumanos")]  // exemplo de uma situação em que 
-        ////[Authorize(Roles = "Agentes")]          // os utilizadores TÊM AS DUAS Roles
+        ////[Authorize(Roles = "Tecnicos")]          // os utilizadores TÊM AS DUAS Roles
         public ActionResult Index()
         {
 
-            // procura a totalidade dos Agentes na BD
+            Session["Metodo"] = "";
+
+            // procura a totalidade dos Tecnicos na BD
 
             // Instrução feita em LINQ
-            // SELECT * FROM Agentes ORDER BY nome
-            var listaTecnicos = db.Tecnicos.OrderBy(a => a.Nome).ToList();
+            // SELECT * FROM Tecnicos ORDER BY nome
+            var lista = db.Tecnicos.OrderBy(a => a.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
             if (!User.IsInRole("RecursosHumanos"))
             {
                 // mostrar apenas os dados da pessoa
                 string userID = User.Identity.GetUserId();
-                listaTecnicos = listaTecnicos.Where(a => a.UserNameID == userID).ToList();
+                lista = lista.Where(a => a.UserNameID == userID).ToList();
             }
 
-            return View(listaTecnicos);
+            return View(lista);
         }
 
         // GET: Tecnicos/Details/5
@@ -57,6 +59,13 @@ namespace Reservas.Controllers
             {
                 return RedirectToAction("Index");
             }
+
+
+            /// quem pode aceder aos dados:
+            ///    - quem pertencer à role RecursosHumanos ou à role GestorMultas
+            ///        - neste caso em concreto, acede aos dados de qq agente
+            ///    - é o Agente, q só acede aos seus dados
+
             Tecnicos tecnico = db.Tecnicos.Find(id);
             if (tecnico == null)
             {
@@ -159,7 +168,8 @@ namespace Reservas.Controllers
             {
                 try
                 {
-
+                    db.Tecnicos.Add(tecnico);
+                    db.SaveChanges();
                     /// 5º como o guardar no disco rígido? e onde?
                     if (haFoto) fotografia.SaveAs(caminho);
 
@@ -230,7 +240,7 @@ namespace Reservas.Controllers
                 return RedirectToAction("Index");
             }
 
-            // procura os dados do Agentes, cujo ID é fornecido
+            // procura os dados do Tecnicos, cujo ID é fornecido
             Tecnicos tecnico = db.Tecnicos.Find(id);
 
 

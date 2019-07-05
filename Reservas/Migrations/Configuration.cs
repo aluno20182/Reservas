@@ -24,8 +24,8 @@ namespace Reservas.Migrations
             //*********************************************************************
             // adiciona Tecnicos
             var tecnicos = new List<Tecnicos> {
-               new Tecnicos {ID=1, Nome="Tânia Vieira", Cidade="Ourém", Fotografia="TaniaVieira.jpg" },
-               new Tecnicos {ID=2, Nome="António Rocha", Cidade="Ourém", Fotografia="AntonioRocha.jpg" },
+               new Tecnicos {ID=1, Nome="Tânia Vieira", Cidade="Ourém", Fotografia="TaniaVieira.jpg", UserNameID="tania" },
+               new Tecnicos {ID=2, Nome="António Rocha", Cidade="Ourém", Fotografia="AntonioRocha.jpg", UserNameID="rh" },
                new Tecnicos {ID=3, Nome="André Silveira", Cidade="Abrantes", Fotografia="AndreSilveira.jpg" },
                new Tecnicos {ID=4, Nome="Lurdes Vieira", Cidade="Leiria", Fotografia="LurdesVieira.jpg" },
                new Tecnicos {ID=5, Nome="Cláudia Pinto", Cidade="Porto", Fotografia="ClaudiaPinto.jpg" },
