@@ -29,11 +29,11 @@ namespace Reservas.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Codigo")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Lembrar neste navegador?")]
+        [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -55,10 +55,10 @@ namespace Reservas.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Palavra passe")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Lembrar conta?")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 
