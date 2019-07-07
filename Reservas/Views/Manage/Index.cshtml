@@ -1,6 +1,6 @@
 ﻿@model Reservas.Models.IndexViewModel
 @{
-    ViewBag.Title = "Editar perfil";
+    ViewBag.Title = "Manage your account";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -8,10 +8,10 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            @(Model.HasPassword ? Html.ActionLink("Mudar palavra passe", "ChangePassword") 
-                : Html.ActionLink("Escolher uma palavra passe", "SetPassword"))
+            @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword") 
+                : Html.ActionLink("Pick a password", "SetPassword"))
         </p>
-        @*<p>
+        <p>
             Phone Number: @(Model.PhoneNumber ?? "None") [
             @if (Model.PhoneNumber != null)
             {
@@ -24,9 +24,8 @@
                 @Html.ActionLink("Add", "AddPhoneNumber")
             }
             ]
-        </p>*@
-
-        @*<p>
+        </p>
+        <p>
             External Logins: @Model.Logins.Count
             @Html.ActionLink("[Manage]", "ManageLogins")
         </p>
@@ -51,8 +50,8 @@
                     <input type="submit" value="Enable" class="btn btn-default"/>
                 </p>
             }
-        }*@
-        @*@if (Model.BrowserRemembered)
+        }
+        @if (Model.BrowserRemembered)
         {
             using (Html.BeginForm("ForgetBrowser", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
             {
@@ -73,6 +72,6 @@
                     <input type="submit" value="Remember Browser" class="btn btn-default"/>
                 </p>
             }
-        }*@
+        }
     </div>
 </div>

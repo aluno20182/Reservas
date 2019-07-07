@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System;
 
 namespace Reservas.Controllers
 {
@@ -84,7 +83,7 @@ namespace Reservas.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "O utilizador e/ou palavra passe não estão corretos.");
+                    ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
         }
@@ -95,7 +94,7 @@ namespace Reservas.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Require that the user has already logged in via /password or external login
+            // Require that the user has already logged in via username/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
@@ -129,7 +128,7 @@ namespace Reservas.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Código inválido.");
+                    ModelState.AddModelError("", "Invalid code.");
                     return View(model);
             }
         }
@@ -158,7 +157,7 @@ namespace Reservas.Controllers
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirmar conta", "Por favor, confirme a sua conta clicando neste link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
@@ -210,7 +209,7 @@ namespace Reservas.Controllers
 
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Redefenir palavra passe", "Por favor redefina a sua palavra passe, clicando aqui: <a href=\"" + callbackUrl + "\">link</a>");
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
                 ViewBag.Link = callbackUrl;
                 return View("ForgotPasswordConfirmation");
             }
@@ -370,7 +369,7 @@ namespace Reservas.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser {  UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
