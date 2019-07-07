@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Pagina Inicial";
 }
 
 <div class="jumbotron">
@@ -41,7 +41,7 @@
         <dl>
             <dt>Validation</dt>
             <dd>
-                When you create a User using a username or password, the Identity system performs validation on the username and password, and the passwords are hashed before they are
+                When you create a User using a  or password, the Identity system performs validation on the  and password, and the passwords are hashed before they are
                 stored in the database. You can customize the validation by changing some of the properties of the validators such as Turn alphanumeric on/off, set minimum password length
                 or you can write your own custom validators and register them with the UserManager.
             </dd>
@@ -51,8 +51,8 @@
         <dl>
             <dt>Register a user and login</dt>
             <dd>
-                Click @Html.ActionLink("Register", "Register", "Account") and see the code in AccountController.cs and Register Action.
-                Click @Html.ActionLink("Log in", "Login", "Account") and see the code in AccountController.cs and Login Action.
+                Click @Html.ActionLink("Registar", "Register", "Account") and see the code in AccountController.cs and Register Action.
+                Click @Html.ActionLink("Entrar", "Login", "Account") and see the code in AccountController.cs and Login Action.
             </dd>
         </dl>
     </div>
@@ -131,7 +131,7 @@
                         In the Manage page, you can turn on Two-Factor authentication.
                     </li>
                     <li>
-                        When you logout and login, after you enter the username and password, you will get an option of how to get the security code to use for two-factor authentication.
+                        When you logout and login, after you enter the  and password, you will get an option of how to get the security code to use for two-factor authentication.
                     </li>
                     <li>
                         You can copy the code from your SMS or email and enter in the form to login.
