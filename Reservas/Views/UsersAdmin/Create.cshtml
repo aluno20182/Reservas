@@ -1,6 +1,6 @@
 ﻿@model Reservas.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Criar Novo Utilizador";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
         <label class="col-md-2 control-label">
-            Select User Role
+            Seleciona a Função do Utilizador
         </label>
         <div class="col-md-10">
             @foreach (var item in (SelectList)ViewBag.RoleId)
@@ -43,7 +43,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Create" />
+            <input type="submit" class="btn btn-default" value="Criar" />
         </div>
     </div>
 }
