@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Tecnicos
-        [Authorize(Roles = "RecursosHumanos,Tecnicos")] // além de AUTENTICADO,
+        [Authorize(Roles = "Recursos Humanos, Tecnico")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Tecnicos têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -37,7 +37,7 @@ namespace Reservas.Controllers
             var lista = db.Tecnicos.OrderBy(a => a.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursosHumanos"))
+            if (!User.IsInRole("Recursos Humanos"))
             {
                 // mostrar apenas os dados da pessoa
                 string userID = User.Identity.GetUserId();
@@ -75,8 +75,8 @@ namespace Reservas.Controllers
 
             // se cheguei aqui, o Tecnico foi encontrado na BD
             // será que tenho autorização para aceder aos seus dados?
-            if (User.IsInRole("RecursosHumanos") ||
-               User.IsInRole("GestorResrvas") ||
+            if (User.IsInRole("Recursos Humanos") ||
+               User.IsInRole("Gestor Resrvas") ||
                tecnico.UserNameID == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Agente
@@ -95,7 +95,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursosHumanos")]
+        [Authorize(Roles = "Recursos Humanos")]
 
         public ActionResult Create()
         {
@@ -112,7 +112,7 @@ namespace Reservas.Controllers
         /// <param name="agente">dados do novo Agente</param>
         /// <param name="fotografia">ficheiro com a foto do novo Agente</param>
         /// <returns></returns>
-        [Authorize(Roles = "RecursosHumanos")]
+        [Authorize(Roles = "Recursos Humanos")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnico, HttpPostedFileBase fotografia)

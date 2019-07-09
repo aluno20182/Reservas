@@ -2,8 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<<<<<<< HEAD
-=======
+
 <!-- Navigation -->
 @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -35,7 +34,6 @@
     </div>
 </nav>*@
 
->>>>>>> parent of 6ef2046... Atualização da navbar + coreção das roles do admin no layout
 <div class="jumbotron">
     <img src="~/Imagens/park.png" style="width: 1020px;height: 400px;"/>
 </div>
@@ -47,6 +45,7 @@
 </div>*@
 <!-- /.container -->
 <div class="row">
+
     <div class="col-md-4">
         <dl>
             <dt>Initialize ASP.NET Identity</dt>
@@ -70,17 +69,6 @@
             <dd>
                 <a href="http://blogs.msdn.com/b/webdev/archive/2013/10/16/customizing-profile-information-in-asp-net-identity-in-vs-2013-templates.aspx">Please follow this tutorial.</a>
 
-                <ul>
-                    <li>Add profile information in the Users Table</li>
-                    <li>Look in Models\IdentityModels.cs for examples</li>
-                </ul>
-            </dd>
-        </dl>
-    </div>
-    <div class="col-md-4">
-        <dl>
-            <dt>Validation</dt>
-            <dd>
                 When you create a User using a username  or password, the Identity system performs validation on the username and password, and the passwords are hashed before they are
                 stored in the database. You can customize the validation by changing some of the properties of the validators such as Turn alphanumeric on/off, set minimum password length
                 or you can write your own custom validators and register them with the UserManager.
