@@ -61,5 +61,7 @@ namespace Reservas.Models
             base.OnModelCreating(modelBuilder);
         }
 
+
     }
+
 }
