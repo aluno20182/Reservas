@@ -11,6 +11,7 @@ namespace Reservas.Migrations
     {
         public Configuration()
         {
+            // é possível fazer automaticamente o RECRIAR da base de dados
             AutomaticMigrationsEnabled = true;
         }
 

@@ -40,12 +40,9 @@ namespace Reservas.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two factor provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "A sua palavra passe foi alterada com sucesso."
+                : message == ManageMessageId.SetPasswordSuccess ? "A sua palavra passe foi colocada."
+                : message == ManageMessageId.Error ? "Ocorreu um erro."
                 : "";
 
             var userId = User.Identity.GetUserId();
