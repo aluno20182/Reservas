@@ -35,7 +35,7 @@ namespace Reservas.Models
 
         // *************************************
         /// <summary>
-        ///  lista das multas associadas ao Agente
+        ///  lista das multas associadas ao Tecnicos
         /// </summary>
         public virtual ICollection<Reservas> ListaDeReservas { get; set; }
         // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'

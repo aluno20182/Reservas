@@ -21,7 +21,7 @@ namespace Reservas.Models
 
         public string CodPostalDono { get; set; }
         //***************************************
-        //Lista das multas associadas ao agente
+        //Lista das multas associadas ao Tecnico
         //***************************************
 
         //lista das multas associadas à viatura
