@@ -40,7 +40,7 @@ namespace Reservas
             }
 
             // criar a Role 'RecursosHumanos'
-            if (!roleManager.RoleExists("Recursos Humanos"))
+            if (!roleManager.RoleExists("RecursosHumanos"))
             {
                 // não existe a 'role'
                 // então, criar essa role
@@ -50,7 +50,7 @@ namespace Reservas
             }
 
             // criar a Role 'GestorReservas'
-            if (!roleManager.RoleExists("Gestor Reservas"))
+            if (!roleManager.RoleExists("GestorReservas"))
             {
                 // não existe a 'role'
                 // então, criar essa role

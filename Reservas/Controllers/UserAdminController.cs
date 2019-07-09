@@ -90,7 +90,6 @@ namespace Reservas.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
