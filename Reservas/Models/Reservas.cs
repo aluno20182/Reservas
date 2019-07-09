@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -10,10 +11,13 @@ namespace Reservas.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Local da reserva")]
         public string LocalDaReserva { get; set; }
 
+        [Display(Name = "Data da entrada da reserva")]
         public DateTime DataDaEntrada { get; set; }
 
+        [Display(Name = "Data da saida da reserva")]
         public DateTime? DataDaSaida { get; set; }
 
         //  *************************************
@@ -24,19 +28,19 @@ namespace Reservas.Models
         [ForeignKey("Viatura")]  //Anotações são feitas sobre o objeto que está por baixo
         public int ViaturaFK { get; set; }  //Base de Dados
 
-        public Viaturas Viatura { get; set; }   // C#
+        public virtual Viaturas Viatura { get; set; }   // C#
 
 
         [ForeignKey("Tecnico")]  //Anotações são feitas sobre o objeto que está por baixo
         public int TecnicoFK { get; set; }  //Base de Dados
 
-        public Tecnicos Tecnico { get; set; }   // C#
+        public virtual Tecnicos Tecnico { get; set; }   // C#
 
         
         [ForeignKey("Cliente")]  //Anotações são feitas sobre o objeto que está por baixo
         public int ClienteFK { get; set; }  //Base de Dados
 
-        public Clientes Cliente { get; set; }   // C#
+        public virtual Clientes Cliente { get; set; }   // C#
 
     }
 }

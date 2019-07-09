@@ -49,7 +49,7 @@ namespace Reservas.Controllers
 
         // GET: Tecnicos/Details/5
         /// <summary>
-        /// Mostra os dados de um Agente 
+        /// Mostra os dados de um Tecnico 
         /// </summary>
         /// <param name="id">identifica o Tecnico</param>
         /// <returns>devolve a View com os dados</returns>
@@ -63,8 +63,8 @@ namespace Reservas.Controllers
 
             /// quem pode aceder aos dados:
             ///    - quem pertencer à role RecursosHumanos ou à role GestorMultas
-            ///        - neste caso em concreto, acede aos dados de qq agente
-            ///    - é o Agente, q só acede aos seus dados
+            ///        - neste caso em concreto, acede aos dados de qq tecnico
+            ///    - é o Tecnico, q só acede aos seus dados
 
             Tecnicos tecnico = db.Tecnicos.Find(id);
             if (tecnico == null)
@@ -79,7 +79,7 @@ namespace Reservas.Controllers
                User.IsInRole("Gestor Reservas") ||
                tecnico.UserNameID == User.Identity.GetUserId())
             {
-                // se isto se verifica , posso ver os dados do Agente
+                // se isto se verifica , posso ver os dados do Tecnico
                 return View(tecnico);
             }
             else
@@ -91,7 +91,7 @@ namespace Reservas.Controllers
 
         // GET: Tecnicos/Create
         /// <summary>
-        /// mostra a view para carregar os dados de um novo Agente
+        /// mostra a view para carregar os dados de um novo Tecnico
         /// </summary>
         /// <returns></returns>
         /// 
@@ -105,12 +105,12 @@ namespace Reservas.Controllers
         // POST: Tecnicos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        
+
         /// <summary>
-        /// recolhe os dados da View, sobre um novo Agente
+        /// recolhe os dados da View, sobre um novo Tecnico
         /// </summary>
-        /// <param name="agente">dados do novo Agente</param>
-        /// <param name="fotografia">ficheiro com a foto do novo Agente</param>
+        /// <param name="tecnico">dados do novo Tecnico</param>
+        /// <param name="fotografia">ficheiro com a foto do novo Tecnico</param>
         /// <returns></returns>
         [Authorize(Roles = "Recursos Humanos")]
         [HttpPost]
@@ -149,7 +149,7 @@ namespace Reservas.Controllers
                     string nome = g.ToString() + extensao;
                     // onde guardar o ficheiro
                     caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
-                    // atribuir ao agente o nome do ficheiro
+                    // atribuir ao tecnico o nome do ficheiro
                     tecnico.Fotografia = nome;
                     // assinalar q há foto
                     haFoto = true;
@@ -157,7 +157,7 @@ namespace Reservas.Controllers
                 else
                 {
                     // o ficheiro fornecido não é válido
-                    // atribuo a imagem por defeito ao Agente
+                    // atribuo a imagem por defeito ao Tecnico
                     tecnico.Fotografia = "Default_Avatar.png";
                 }
             }
@@ -218,13 +218,13 @@ namespace Reservas.Controllers
 
         // GET: Tecnicos/Delete/5
         /// <summary>
-        /// mostra na view os dados de um agente para porterior, eventual, remoção
+        /// mostra na view os dados de um tecnico para porterior, eventual, remoção
         /// </summary>
-        /// <param name="id">identificador do agente a remover</param>
+        /// <param name="id">identificador do tecnico a remover</param>
         /// <returns></returns>
         public ActionResult Delete(int? id)
         {
-            // o ID do agente não foi fornecido
+            // o ID do tecnico não foi fornecido
             // não é possível procurar o Tecnico
             // o que devo fazer?
             if (id == null)
@@ -244,7 +244,7 @@ namespace Reservas.Controllers
             Tecnicos tecnico = db.Tecnicos.Find(id);
 
 
-            /// se o agente não fôr encontrado
+            /// se o tecnico não fôr encontrado
             if (tecnico == null)
             {
                 // ou há um erro,
@@ -265,15 +265,15 @@ namespace Reservas.Controllers
             Session["IdTecnico"] = tecnico.ID;
             Session["Metodo"] = "Tecnicos/Delete";
 
-            // envia para a View os dados do Agente encontrado
+            // envia para a View os dados do Tecnico encontrado
             return View(tecnico);
         }
 
         // POST: Tecnicos/Delete/5
         /// <summary>
-        /// concretizar a operação de remoção de um agente
+        /// concretizar a operação de remoção de um tecnico
         /// </summary>
-        /// <param name="id"> identificador do agente</param>
+        /// <param name="id"> identificador do tecnico</param>
         /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -305,12 +305,12 @@ namespace Reservas.Controllers
                 return RedirectToAction("Index");
             }
 
-            // procura os dados do Agente, na BD
+            // procura os dados do Tecnico, na BD
             Tecnicos tecnico = db.Tecnicos.Find(id);
 
             if (tecnico == null)
             {
-                // não foi possível encontrar o Agente
+                // não foi possível encontrar o Tecnico
                 return RedirectToAction("Index");
             }
 
@@ -325,7 +325,7 @@ namespace Reservas.Controllers
                 // pode haver mais do que um 'catch' associado a um 'try'
 
                 // enviar mensagem de erro para o utilizador
-                ModelState.AddModelError("", "Ocorreu um erro com a eliminação do Agente "
+                ModelState.AddModelError("", "Ocorreu um erro com a eliminação do Tecnico "
                                             + tecnico.Nome +
                                             ". Provavelmente relacionado com o facto do " +
                                             "tecnico ter gerido uma reserva...");
