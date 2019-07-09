@@ -3,12 +3,12 @@
     ViewBag.Title = "Manage your account";
 }
 
-<h2>@ViewBag.Title.</h2>
+    
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div class="row">
+<div class="row">    
     <div class="col-md-8">
         <p>
-            @(Model.HasPassword ? Html.ActionLink("Mudar palavra passe", "ChangePassword") 
+            @(Model.HasPassword ? Html.ActionLink("Mudar palavra passe", "ChangePassword")
                 : Html.ActionLink("Escolher uma palavra passe", "SetPassword"))
         </p>
     </div>

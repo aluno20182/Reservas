@@ -76,7 +76,7 @@ namespace Reservas.Controllers
             // se cheguei aqui, o Tecnico foi encontrado na BD
             // será que tenho autorização para aceder aos seus dados?
             if (User.IsInRole("Recursos Humanos") ||
-               User.IsInRole("Gestor Resrvas") ||
+               User.IsInRole("Gestor Reservas") ||
                tecnico.UserNameID == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Tecnico

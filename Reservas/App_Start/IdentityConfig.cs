@@ -49,12 +49,12 @@ namespace Reservas.Models
             // You can write your own provider and plug in here.
             manager.RegisterTwoFactorProvider("PhoneCode", new PhoneNumberTokenProvider<ApplicationUser>
             {
-                MessageFormat = "Your security code is: {0}"
+                MessageFormat = "O seu código de segurança é {0}"
             });
             manager.RegisterTwoFactorProvider("EmailCode", new EmailTokenProvider<ApplicationUser>
             {
                 Subject = "SecurityCode",
-                BodyFormat = "Your security code is {0}"
+                BodyFormat = "O seu código de segurança é  {0}"
             });
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();

@@ -68,10 +68,11 @@ namespace Reservas
             string userPWD = "123_Asd";   //  wuH4)al
             var chkUser = userManager.Create(user, userPWD);
 
-            //Adicionar o Utilizador à respetiva Role-Tecnico-
+            //Adicionar o Utilizador à respetiva Role-Recursos Humanos-
+
             if (chkUser.Succeeded)
             {
-                var result1 = userManager.AddToRole(user.Id, "Tecnico");
+                var result1 = userManager.AddToRole(user.Id, "Recursos Humanos");
             }
         }
 

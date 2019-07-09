@@ -6,7 +6,7 @@ namespace Reservas.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Correio eletrónico")]
         public string Email { get; set; }
     }
 
@@ -29,11 +29,11 @@ namespace Reservas.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
+        [Display(Name = "Código")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Lembrar neste navegador?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,23 +42,23 @@ namespace Reservas.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Endereço eletrónico")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Endereço eletrónico")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Palavra passe")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Lembrar nome de utilizador")]
         public bool RememberMe { get; set; }
     }
 
@@ -66,7 +66,7 @@ namespace Reservas.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Endereço eletrónico")]
         public string Email { get; set; }
 
         [Required]
@@ -87,17 +87,17 @@ namespace Reservas.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Correio eletrónico")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "A {0} tem que ter pelo menos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Palavra passe")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirmar palavra passe")]
         [Compare("Password", ErrorMessage = "As palavras passes são diferentes!")]
         public string ConfirmPassword { get; set; }
 
@@ -108,7 +108,7 @@ namespace Reservas.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Endereço eletrónico")]
         public string Email { get; set; }
     }
 }
