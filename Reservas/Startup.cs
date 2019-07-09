@@ -62,16 +62,16 @@ namespace Reservas
 
             // criar um utilizador 'Tecnico'
             var user = new ApplicationUser();
-            user.UserName = "agente@mail.pt";
-            user.Email = "agente@mail.pt";
+            user.UserName = "tecnico@mail.pt";
+            user.Email = "tecnico@mail.pt";
             // user.Nome = "Luís Freitas";
             string userPWD = "123_Asd";   //  wuH4)al
             var chkUser = userManager.Create(user, userPWD);
 
-            //Adicionar o Utilizador à respetiva Role-Agente-
+            //Adicionar o Utilizador à respetiva Role-Recursos Humanos-
             if (chkUser.Succeeded)
             {
-                var result1 = userManager.AddToRole(user.Id, "Tecnico");
+                var result1 = userManager.AddToRole(user.Id, "Recursos Humanos");
             }
         }
 
