@@ -115,7 +115,7 @@ namespace Reservas.Models
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
             const string name = "admin@example.com";
-            const string password = "Admin@123456";
+            const string password = "123_Asd";
             const string roleName = "Admin";
 
             //Create Role Admin if it does not exist
