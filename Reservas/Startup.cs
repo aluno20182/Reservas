@@ -40,7 +40,7 @@ namespace Reservas
             }
 
             // criar a Role 'RecursosHumanos'
-            if (!roleManager.RoleExists("Recursos Humanos"))
+            if (!roleManager.RoleExists("RecursosHumanos"))
             {
                 // não existe a 'role'
                 // então, criar essa role
@@ -50,7 +50,7 @@ namespace Reservas
             }
 
             // criar a Role 'GestorReservas'
-            if (!roleManager.RoleExists("Gestor Reservas"))
+            if (!roleManager.RoleExists("GestorReservas"))
             {
                 // não existe a 'role'
                 // então, criar essa role
@@ -62,8 +62,8 @@ namespace Reservas
 
             // criar um utilizador 'Tecnico'
             var user = new ApplicationUser();
-            user.UserName = "tecnico@mail.pt";
-            user.Email = "tecnico@mail.pt";
+            user.UserName = "tecnico@example.com";
+            user.Email = "tecnico@example.com";
             // user.Nome = "Luís Freitas";
             string userPWD = "123_Asd";   //  wuH4)al
             var chkUser = userManager.Create(user, userPWD);
@@ -72,7 +72,7 @@ namespace Reservas
 
             if (chkUser.Succeeded)
             {
-                var result1 = userManager.AddToRole(user.Id, "Recursos Humanos");
+                var result1 = userManager.AddToRole(user.Id, "Tecnico");
             }
         }
 
