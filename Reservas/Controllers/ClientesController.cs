@@ -40,8 +40,8 @@ namespace Reservas.Controllers
             if (!User.IsInRole("Cliente"))
             {
                 // mostrar apenas os dados da pessoa
-                string bi = User.Identity.GetUserId();
-                lista = lista.Where(a => a.BI == bi).ToList();
+                string cc = User.Identity.GetUserId();
+                lista = lista.Where(a => a.CC == cc).ToList();
             }
 
             return View(lista);

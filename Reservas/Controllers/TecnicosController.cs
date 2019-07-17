@@ -128,7 +128,7 @@ namespace Reservas.Controllers
             bool haFoto = false;
 
             // há ficheiro?
-            if (haFoto == null)
+            if (haFoto == false)
             {
                 // não há ficheiro,
                 // atribui-se-lhe o avatar

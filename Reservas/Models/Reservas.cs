@@ -14,11 +14,8 @@ namespace Reservas.Models
         [Display(Name = "Local da reserva")]
         public string LocalDaReserva { get; set; }
 
-        [Display(Name = "Data da entrada da reserva")]
-        public DateTime DataDaEntrada { get; set; }
-
-        [Display(Name = "Data da saida da reserva")]
-        public DateTime? DataDaSaida { get; set; }
+        [Display(Name = "Data da reserva")]
+        public DateTime DataDaReserva { get; set; }
 
         //  *************************************
         //  Criação das chaves Forasteiras
