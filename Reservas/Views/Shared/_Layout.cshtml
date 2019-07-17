@@ -26,29 +26,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../Home/Contact">Contactos</a>
                     </li>
-                    @*Corrigir aqui*@
-                    @*if (Request.IsAuthenticated && User.IsInRole("Admin"))
-        {*@
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin")){
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="../RolesAdmin">Roles Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../UsersAdmin">Users Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Tecnicos">Tecnicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Clientes">Clientes</a>
-                    </li>
-                    @*}*@
+                        <li class="nav-item">
+                            <a class="nav-link" href="../RolesAdmin">Roles Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../UsersAdmin">Users Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Tecnicos">Tecnicos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Clientes">Clientes</a>
+                        </li>
+                    }
 
                     </ul>
-                    </div>
             </div>
-            @Html.Partial("_LoginPartial")
-        </nav>
+        </div>
+        @Html.Partial("_LoginPartial")
+    </nav>
 
         <div class="container body-content">
             @RenderBody()
