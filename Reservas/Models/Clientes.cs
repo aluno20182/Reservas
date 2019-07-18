@@ -9,6 +9,12 @@ namespace Reservas.Models
 {
     public class Clientes
     {
+
+        public Clientes()
+        {
+            ListaDeReservas = new HashSet<Reservas>();
+        } 
+
         [Key] // identifica este atributo como Primary Key
         public int ID { get; set; }
 
@@ -22,15 +28,20 @@ namespace Reservas.Models
         //[StringLength(8, ErrorMessage = "O {0} deve ter, no máximo, {1} caracteres.")]
         //[RegularExpression("[A-Z][a-z]+(( |-)[A-Z][a-z]+)*",
         //            ErrorMessage = "O {0} só pode conter números.")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string CC { get; set; }
 
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string NIF { get; set; }
 
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string Telemovel { get; set; }
 
         public string Email { get; set; }
 
         public DateTime DataNascimento { get; set; }
+
+        public string Fotografia { get; set; }
 
         public string NumCartaConducao { get; set; }
 
@@ -49,7 +60,7 @@ namespace Reservas.Models
         //public int ViaturaFK { get; set; }  //Base de Dados
 
 
-        public ICollection<Reservas> ListaDeReservas { get; set; }
+        public virtual ICollection<Reservas> ListaDeReservas { get; set; }
 
     }
 }
