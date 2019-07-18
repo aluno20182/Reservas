@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Clientes
-        [Authorize(Roles = "Cliente")] // além de AUTENTICADO,
+        [Authorize(Roles = "Recurso Humanos, Admin")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -37,7 +37,7 @@ namespace Reservas.Controllers
             var lista = db.Clientes.OrderBy(a => a.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("Cliente"))
+            if (!User.IsInRole("Recurso Humanos, Admin"))
             {
                 // mostrar apenas os dados da pessoa
                 string cc = User.Identity.GetUserId();
@@ -75,7 +75,9 @@ namespace Reservas.Controllers
 
             // se cheguei aqui, o Cliente foi encontrado na BD
             // será que tenho autorização para aceder aos seus dados?
-            if (User.IsInRole("Cliente"))
+            if (User.IsInRole("RecursosHumanos") ||
+                User.IsInRole("GestorReservas") ||
+                cliente.CC == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Cliente
                 return View(cliente);
@@ -93,12 +95,96 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "Cliente")]
+        [Authorize(Roles = "Recurso Humanos, Admin")]
 
         public ActionResult Create()
         {
             return View();
         }
+
+        // POST: Tecnicos/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+        /// <summary>
+        /// recolhe os dados da View, sobre um novo Cliente
+        /// </summary>
+        /// <param name="tecnico">dados do novo Cliente</param>
+        /// <param name="fotografia">ficheiro com a foto do novo Cliente</param>
+        /// <returns></returns>
+        [Authorize(Roles = "Recursos Humanos")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Nome,LocalEmissao")] Clientes cliente, HttpPostedFileBase fotografia)
+        {
+            /// precisamos de processar a fotografia
+            /// 1º será q foi fornecido um ficheiro?
+            /// 2º será do tipo correto?
+            /// 3º se for do tipo correto, guarda-se
+            ///    se não for, atribui-se um 'avatar genérico' ao utilizador
+
+            // var auxiliar
+            string caminho = "";
+            bool haFoto = false;
+
+            // há ficheiro?
+            if (haFoto == false)
+            {
+                // não há ficheiro,
+                // atribui-se-lhe o avatar
+                cliente.Fotografia = "Default_Avatar.png";
+            }
+            else
+            {
+                // há ficheiro
+                // será correto?
+                if (fotografia.ContentType == "image/jpeg" ||
+                   fotografia.ContentType == "image/png")
+                {
+                    // estamos perante uma foto correta?
+                    string extensao = Path.GetExtension(fotografia.FileName).ToLower();
+                    Guid g;
+                    g = Guid.NewGuid();
+                    // nome do ficheiro
+                    string nome = g.ToString() + extensao;
+                    // onde guardar o ficheiro
+                    caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
+                    // atribuir ao tecnico o nome do ficheiro
+                    cliente.Fotografia = nome;
+                    // assinalar q há foto
+                    haFoto = true;
+                }
+                else
+                {
+                    // o ficheiro fornecido não é válido
+                    // atribuo a imagem por defeito ao Tecnico
+                    cliente.Fotografia = "Default_Avatar.png";
+                }
+            }
+
+            /// confronta os dados q vêm da view com a forma que os dados devem ter.
+            /// ie, valida os dados com o Modelo
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Clientes.Add(cliente);
+                    db.SaveChanges();
+                    /// 5º como o guardar no disco rígido? e onde?
+                    if (haFoto) fotografia.SaveAs(caminho);
+
+                    return RedirectToAction("Index");
+                }
+
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return View(cliente);
+        }
+
 
 
         // GET: Clientes/Edit/5
@@ -108,12 +194,12 @@ namespace Reservas.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            Clientes cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            return View(cliente);
         }
 
         // POST: Clientes/Edit/5
@@ -121,15 +207,15 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Cidade,Fotografia")] Clientes clientes)
+        public ActionResult Edit([Bind(Include = "ID,Nome,LocalEmissao,Fotografia")] Clientes cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clientes).State = EntityState.Modified;
+                db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(clientes);
+            return View(cliente);
         }
 
         // GET: Clientes/Delete/5
