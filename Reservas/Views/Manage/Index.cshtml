@@ -1,15 +1,18 @@
 ﻿@model Reservas.Models.IndexViewModel
+
 @{
     ViewBag.Title = "Manage your account";
 }
 
-    
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div class="row">    
-    <div class="col-md-8">
-        <p>
-            @(Model.HasPassword ? Html.ActionLink("Mudar palavra passe", "ChangePassword")
-                : Html.ActionLink("Escolher uma palavra passe", "SetPassword"))
-        </p>
+
+<p class="text-success">Gerir a sua conta</p>
+    <div class="row">
+
+        <div class="col-md-8">
+            <p>
+                @(Model.HasPassword ? Html.ActionLink("Mudar palavra passe", "ChangePassword")
+                    : Html.ActionLink("Escolher uma palavra passe", "SetPassword"))
+            </p>
+
+        </div>
     </div>
-</div>
