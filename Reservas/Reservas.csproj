@@ -266,6 +266,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\Utilizadores.cs" />
     <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -376,7 +377,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties content_4bootstrap-reboot_1css_1map__JsonSchema="" content_4bootstrap-reboot_1min_1css_1map__JsonSchema="" />
+      <UserProperties content_4bootstrap-reboot_1min_1css_1map__JsonSchema="" content_4bootstrap-reboot_1css_1map__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

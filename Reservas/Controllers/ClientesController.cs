@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Clientes
-        [Authorize(Roles = "RecursoHumanos, Admin")] // além de AUTENTICADO,
+        [Authorize(Roles = "RecursoHumanos, Administrador")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -96,7 +96,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursoHumanos, Admin")]
+        [Authorize(Roles = "RecursoHumanos, Administrador")]
 
         public ActionResult Create()
         {

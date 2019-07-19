@@ -39,6 +39,17 @@ namespace Reservas
                 roleManager.Create(role);
             }
 
+            // criar a Role 'Administrador'
+            if (!roleManager.RoleExists("Administrador"))
+            {
+                // não existe a 'role'
+                // então, criar essa role
+                var role = new IdentityRole();
+                role.Name = "Administrador";
+                roleManager.Create(role);
+            }
+
+
             // criar a Role 'RecursosHumanos'
             if (!roleManager.RoleExists("RecursosHumanos"))
             {
@@ -69,20 +80,31 @@ namespace Reservas
                 roleManager.Create(role);
             }
 
-
             // criar um utilizador 'Tecnico'
             var user = new ApplicationUser();
             user.UserName = "tecnico@example.com";
             user.Email = "tecnico@example.com";
-            // user.Nome = "Luís Freitas";
-            string userPWD = "123_Asd";   //  wuH4)al
+            string userPWD = "123_Asd";
             var chkUser = userManager.Create(user, userPWD);
+
+            //Adicionar o Utilizador à respetiva Role-Recursos Humanos-
+            if (chkUser.Succeeded)
+            {
+                var result1 = userManager.AddToRole(user.Id, "Tecnico");
+            }
+
+            // criar um utilizador 'Administrador'
+            user = new ApplicationUser();
+            user.UserName = "admin@example.com";
+            user.Email = "admin@example.com";
+            userPWD = "123_Asd";   //  wuH4)al
+            chkUser = userManager.Create(user, userPWD);
 
             //Adicionar o Utilizador à respetiva Role-Recursos Humanos-
 
             if (chkUser.Succeeded)
             {
-                var result1 = userManager.AddToRole(user.Id, "Tecnico");
+                var result1 = userManager.AddToRole(user.Id, "Administrador");
             }
         }
 

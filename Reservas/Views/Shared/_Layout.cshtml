@@ -26,7 +26,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../Home/Contact">Contactos</a>
                     </li>
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (Request.IsAuthenticated && User.IsInRole("Administrador"))
                     {
                         <li class="nav-item">
                             <a class="nav-link" href="../RolesAdmin">Roles Admin</a>

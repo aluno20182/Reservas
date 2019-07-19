@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Tecnicos
-        [Authorize(Roles = "RecursosHumanos, Admin")] // além de AUTENTICADO,
+        [Authorize(Roles = "RecursosHumanos, Administrador")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Tecnicos têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
