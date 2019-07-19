@@ -70,8 +70,8 @@ namespace Reservas.Migrations
             //*********************************************************************
             // adiciona Clientes
             var clientes = new List<Clientes> {
-               new Clientes {ID=1, Nome=" João Santos", CC="123456", Telemovel="912039720", DataNascimento=new DateTime(1965,2,21), NumCartaConducao="SA-12345", LocalEmissao="Santarém", DataValidadeCarta=new DateTime(2022,1,22) },
-               new Clientes {ID=2, Nome=" Daniel Soares", CC="259608283", Telemovel="928155823", DataNascimento=new DateTime(1966,7,19), NumCartaConducao="LX-244056", LocalEmissao="Lisboa", DataValidadeCarta=new DateTime(2029,9,24) },
+               new Clientes {ID=1, Nome=" João Santos", CC="259608282", Telemovel="912039720", DataNascimento=new DateTime(1965,2,21), NumCartaConducao="SA-12345", LocalEmissao="Santarém", DataValidadeCarta=new DateTime(2022,1,22), UserNameID="cl" },
+               new Clientes {ID=2, Nome=" Daniel Soares", CC="259608283", Telemovel="928155823", DataNascimento=new DateTime(1966,7,19), NumCartaConducao="LX-244056", LocalEmissao="Lisboa", DataValidadeCarta=new DateTime(2029,9,24), UserNameID="cliente" },
                new Clientes {ID=3, Nome=" Adriana Rodrigues", CC="588141871", Telemovel="922775155", DataNascimento=new DateTime(1981,12,3), NumCartaConducao="LX-847226", LocalEmissao="Lisboa", DataValidadeCarta=new DateTime(2025,2,9) },
                new Clientes {ID=4, Nome=" Rosa Fernandes", CC="728246437", Telemovel="913055221", DataNascimento=new DateTime(1977,9,24), NumCartaConducao="SA-89573", LocalEmissao="Santarém", DataValidadeCarta=new DateTime(2027,9,6) },
                new Clientes {ID=5, Nome=" Carolina Oliveira", CC="858156342", Telemovel="938070118", DataNascimento=new DateTime(1953,8,17), NumCartaConducao="AC-738163", LocalEmissao="Açores", DataValidadeCarta=new DateTime(2022,8,1) },

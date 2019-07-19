@@ -45,7 +45,7 @@ namespace Reservas
                 // não existe a 'role'
                 // então, criar essa role
                 var role = new IdentityRole();
-                role.Name = "Recursos Humanos";
+                role.Name = "RecursosHumanos";
                 roleManager.Create(role);
             }
 
@@ -55,7 +55,17 @@ namespace Reservas
                 // não existe a 'role'
                 // então, criar essa role
                 var role = new IdentityRole();
-                role.Name = "Gestor Reservas";
+                role.Name = "GestorReservas";
+                roleManager.Create(role);
+            }
+
+            // criar a Role 'Cliente'
+            if (!roleManager.RoleExists("Cliente"))
+            {
+                // não existe a 'role'
+                // então, criar essa role
+                var role = new IdentityRole();
+                role.Name = "Cliente";
                 roleManager.Create(role);
             }
 
