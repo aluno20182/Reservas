@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Clientes
-        [Authorize(Roles = "RecursoHumanos, Admin")] // além de AUTENTICADO,
+        [Authorize(Roles = "Recurso Humanos, Admin")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -34,15 +34,14 @@ namespace Reservas.Controllers
 
             // Instrução feita em LINQ
             // SELECT * FROM Clientes ORDER BY nome
-            var lista = db.Clientes.OrderBy(cc => cc.Nome).ToList();
+            var lista = db.Clientes.OrderBy(a => a.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursoHumanos"))
+            if (!User.IsInRole("Recurso Humanos, Admin"))
             {
                 // mostrar apenas os dados da pessoa
-                string userID = User.Identity.GetUserId();
-                lista = lista.Where(cc => cc.UserNameID == userID).ToList();
-                return RedirectToAction("Details", new { id = userID });
+                string cc = User.Identity.GetUserId();
+                lista = lista.Where(a => a.CC == cc).ToList();
             }
 
             return View(lista);
@@ -78,7 +77,7 @@ namespace Reservas.Controllers
             // será que tenho autorização para aceder aos seus dados?
             if (User.IsInRole("RecursosHumanos") ||
                 User.IsInRole("GestorReservas") ||
-                cliente.UserNameID == User.Identity.GetUserId())
+                cliente.CC == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Cliente
                 return View(cliente);
@@ -96,7 +95,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursoHumanos, Admin")]
+        [Authorize(Roles = "Recurso Humanos, Admin")]
 
         public ActionResult Create()
         {
@@ -113,10 +112,10 @@ namespace Reservas.Controllers
         /// <param name="tecnico">dados do novo Cliente</param>
         /// <param name="fotografia">ficheiro com a foto do novo Cliente</param>
         /// <returns></returns>
-        [Authorize(Roles = "RecursosHumanos")]
+        [Authorize(Roles = "Recursos Humanos")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] Clientes cliente, HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "Nome,LocalEmissao")] Clientes cliente, HttpPostedFileBase fotografia)
         {
             /// precisamos de processar a fotografia
             /// 1º será q foi fornecido um ficheiro?
@@ -167,12 +166,20 @@ namespace Reservas.Controllers
             /// ie, valida os dados com o Modelo
             if (ModelState.IsValid)
             {
-                db.Clientes.Add(cliente);
-                db.SaveChanges();
-                /// 5º como o guardar no disco rígido? e onde?
-                if (haFoto) fotografia.SaveAs(caminho);
+                try
+                {
+                    db.Clientes.Add(cliente);
+                    db.SaveChanges();
+                    /// 5º como o guardar no disco rígido? e onde?
+                    if (haFoto) fotografia.SaveAs(caminho);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                catch (Exception)
+                {
+                    throw;
+                }
             }
 
             return View(cliente);

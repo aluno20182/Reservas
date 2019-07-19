@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Tecnicos
-        [Authorize(Roles = "RecursosHumanos, Admin")] // além de AUTENTICADO,
+        [Authorize(Roles = "Recursos Humanos, Tecnico")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Tecnicos têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -37,13 +37,11 @@ namespace Reservas.Controllers
             var lista = db.Tecnicos.OrderBy(a => a.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursosHumanos"))
+            if (!User.IsInRole("Recursos Humanos"))
             {
                 // mostrar apenas os dados da pessoa
                 string userID = User.Identity.GetUserId();
                 lista = lista.Where(a => a.UserNameID == userID).ToList();
-                return RedirectToAction("Details", new { id = userID });
-
             }
 
             return View(lista);
@@ -77,8 +75,8 @@ namespace Reservas.Controllers
 
             // se cheguei aqui, o Tecnico foi encontrado na BD
             // será que tenho autorização para aceder aos seus dados?
-            if (User.IsInRole("RecursosHumanos") ||
-               User.IsInRole("GestorReservas") ||
+            if (User.IsInRole("Recursos Humanos") ||
+               User.IsInRole("Gestor Reservas") ||
                tecnico.UserNameID == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Tecnico
@@ -97,7 +95,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursosHumanos")]
+        [Authorize(Roles = "Recursos Humanos")]
 
         public ActionResult Create()
         {
@@ -114,10 +112,10 @@ namespace Reservas.Controllers
         /// <param name="tecnico">dados do novo Tecnico</param>
         /// <param name="fotografia">ficheiro com a foto do novo Tecnico</param>
         /// <returns></returns>
-        [Authorize(Roles = "RecursosHumanos, Tecnico")]
+        [Authorize(Roles = "Recursos Humanos")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome, Cidade")] Tecnicos tecnico, HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "Nome,Cidade")] Tecnicos tecnico, HttpPostedFileBase fotografia)
         {
             /// precisamos de processar a fotografia
             /// 1º será q foi fornecido um ficheiro?
@@ -194,12 +192,12 @@ namespace Reservas.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tecnicos tecnico = db.Tecnicos.Find(id);
-            if (tecnico == null)
+            Tecnicos tecnicos = db.Tecnicos.Find(id);
+            if (tecnicos == null)
             {
                 return HttpNotFound();
             }
-            return View(tecnico);
+            return View(tecnicos);
         }
 
         // POST: Tecnicos/Edit/5
@@ -207,15 +205,15 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,Cidade,Fotografia")] Tecnicos tecnico)
+        public ActionResult Edit([Bind(Include = "ID,Nome,Cidade,Fotografia")] Tecnicos tecnicos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tecnico).State = EntityState.Modified;
+                db.Entry(tecnicos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tecnico);
+            return View(tecnicos);
         }
 
         // GET: Tecnicos/Delete/5
