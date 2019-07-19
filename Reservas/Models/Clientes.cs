@@ -51,17 +51,16 @@ namespace Reservas.Models
 
         public string MetodoDePagamento { get; set; }
 
-        // *************************************
-        /// <summary>
-        ///  lista das reservas associadas aos Clientes
-        /// </summary>
-        public virtual ICollection<Reservas> ListaDeReservas { get; set; }
-        // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
+        //  *************************************
+        //  Criação das chaves Forasteiras
+        //  *************************************
 
-        // *************************************
-        // criar uma 'chave forasteira' para ligar um Cliente
-        // ao respetivo UserName
-        //  [Required]
-        public string UserNameID { get; set; }
+        //  FK para Viatura
+        //[ForeignKey("Viatura")]  //Anotações são feitas sobre o objeto que está por baixo
+        //public int ViaturaFK { get; set; }  //Base de Dados
+
+
+        public virtual ICollection<Reservas> ListaDeReservas { get; set; }
+
     }
 }
