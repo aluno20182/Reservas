@@ -4,8 +4,12 @@
         @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
+        @*Switch case para dizer olá Admin, olá tecnico, depndendo da conta que está logada*@
+        @*<li>
+            @Html.ActionLink("Olá " + User + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>*@
         <li class="nav-item">
-            <a class="nav-link" href="../Manage" routeValues=null htmlAttributes=new { title = "Manage" }>Meu Perfil</a>
+            <a class="nav-link" href="../Manage" routeValues=null htmlAttributes=new { title="Manage" }>Meu Perfil</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()" { id="loginLink" }>Sair</a>
