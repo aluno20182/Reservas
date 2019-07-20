@@ -110,7 +110,7 @@ namespace Reservas.Controllers
         /// <summary>
         /// recolhe os dados da View, sobre um novo Cliente
         /// </summary>
-        /// <param name="tecnico">dados do novo Cliente</param>
+        /// <param name="cliente">dados do novo Cliente</param>
         /// <param name="fotografia">ficheiro com a foto do novo Cliente</param>
         /// <returns></returns>
         [Authorize(Roles = "RecursosHumanos")]
@@ -190,7 +190,7 @@ namespace Reservas.Controllers
             Clientes cliente = db.Clientes.Find(id);
             if (cliente == null)
             {
-                return HttpNotFound();
+                return View();
             }
             return View(cliente);
         }
