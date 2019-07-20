@@ -14,81 +14,33 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <td>
+        <th>
             @Html.DisplayNameFor(model => model.CC)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.NIF)
-        </td>
-        <td>
-            @Html.DisplayNameFor(model => model.Telemovel)
-        </td>
-        <td>
-            @Html.DisplayNameFor(model => model.Email)
-        </td>
-        <td>
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.NumCartaConducao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LocalEmissao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataValidadeCarta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MetodoDePagamento)
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalEmissao)
-            </td> 
-            <th>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.CC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NIF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telemovel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataNascimento)
-            </td>
-            <th>
-                @Html.DisplayFor(modelItem => item.NumCartaConducao)
-            </th>
-            <th>
-                @Html.DisplayFor(modelItem => item.LocalEmissao)
-            </th>
-            <th>
-                @Html.DisplayFor(modelItem => item.DataValidadeCarta)
-            </th>
-            <th>
-                @Html.DisplayFor(modelItem => item.MetodoDePagamento)
-            </th>
+     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIF)
+        </td>
 
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
+        </td>
+    </tr>
     }
 </table>
