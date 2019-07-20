@@ -37,7 +37,7 @@ namespace Reservas.Controllers
             var lista = db.Clientes.OrderBy(cc => cc.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursoHumanos"))
+            if (!User.IsInRole("RecursoHumanos, Administrador, Tecnico"))
             {
                 // mostrar apenas os dados da pessoa
                 string userID = User.Identity.GetUserId();
