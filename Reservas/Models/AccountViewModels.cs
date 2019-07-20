@@ -80,6 +80,8 @@ namespace Reservas.Models
         [Compare("Password", ErrorMessage = "As palavras passes são diferentes!")]
         public string ConfirmPassword { get; set; }
 
+        public string Fotografia { get; set; }
+
         public Tecnicos tecnicos { get; set; }
     }
 
