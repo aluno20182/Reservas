@@ -20,7 +20,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: ReservaLugar
-        [Authorize(Roles = "RecursoHumanos, Administrador, Cliente")] // além de AUTENTICADO,
+        [Authorize(Roles = "Administrador, Tecnico")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -97,7 +97,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursoHumanos, Administrador, Cliente")]
+        [Authorize(Roles = "Administrador, Cliente")]
 
         public ActionResult Create()
         {
@@ -113,7 +113,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <param name="reservaLugar">dados do novo Cliente</param>
         /// <returns></returns>
-        [Authorize(Roles = "RecursosHumanos, Cliente")]
+        [Authorize(Roles = "Administrador, Cliente")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] ReservaLugar reservaLugar)

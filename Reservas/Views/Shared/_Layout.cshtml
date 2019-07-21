@@ -27,10 +27,6 @@
                         <a class="nav-link" href="../Home/Contact">Contactos</a>
                     </li>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="../Reservas/Create">Fazer Reserva</a>
-                    </li>
-
 
                     @if (Request.IsAuthenticated && User.IsInRole("Administrador"))
                     {
@@ -50,6 +46,20 @@
                             <a class="nav-link" href="../Reservas">Reservas</a>
                         </li>
 
+                    }
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Tecnico"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Reservas">Reservas</a>
+                        </li>
+                    }
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Cliente"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Reservas">Reservas</a>
+                        </li>
                     }
 
 

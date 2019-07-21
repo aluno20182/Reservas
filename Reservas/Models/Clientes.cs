@@ -28,13 +28,13 @@ namespace Reservas.Models
         //[StringLength(8, ErrorMessage = "O {0} deve ter, no máximo, {1} caracteres.")]
         //[RegularExpression("[A-Z][a-z]+(( |-)[A-Z][a-z]+)*",
         //            ErrorMessage = "O {0} só pode conter números.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string CC { get; set; }
 
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string NIF { get; set; }
 
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string Telemovel { get; set; }
 
         public string Email { get; set; }

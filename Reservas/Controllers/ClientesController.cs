@@ -37,13 +37,13 @@ namespace Reservas.Controllers
             var lista = db.Clientes.OrderBy(cc => cc.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursoHumanos, Administrador, Tecnico"))
-            {
-                // mostrar apenas os dados da pessoa
-                string userID = User.Identity.GetUserId();
-                lista = lista.Where(cc => cc.UserNameID == userID).ToList();
-                return RedirectToAction("Details", new { id = userID });
-            }
+            //if (!User.IsInRole("RecursoHumanos, Tecnico"))
+            //{
+            //    // mostrar apenas os dados da pessoa
+            //    string userID = User.Identity.GetUserId();
+            //    lista = lista.Where(cc => cc.UserNameID == userID).ToList();
+            //    return RedirectToAction("Details", new { id = userID });
+            //}
 
             return View(lista);
         }
@@ -96,7 +96,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursoHumanos, Administrador")]
+        [Authorize(Roles = "RecursoHumanos, Administrador, Cliente")]
 
         public ActionResult Create()
         {
@@ -113,7 +113,7 @@ namespace Reservas.Controllers
         /// <param name="cliente">dados do novo Cliente</param>
         /// <param name="fotografia">ficheiro com a foto do novo Cliente</param>
         /// <returns></returns>
-        [Authorize(Roles = "RecursosHumanos")]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] Clientes cliente, HttpPostedFileBase fotografia)
