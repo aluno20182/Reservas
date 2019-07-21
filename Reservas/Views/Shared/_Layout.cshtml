@@ -58,7 +58,10 @@
                     @if (Request.IsAuthenticated && User.IsInRole("Cliente"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="../Reservas">Reservas</a>
+                            <a class="nav-link" href="../Reservas/Create">Fazer Reserva</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Reservas">Minhas Reservas</a>
                         </li>
                     }
 
