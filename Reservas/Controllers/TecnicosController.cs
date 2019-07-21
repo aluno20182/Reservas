@@ -20,7 +20,7 @@ namespace Reservas.Controllers
 
         // GET: Tecnicos
         [Authorize(Roles = "RecursosHumanos, Administrador")] // além de AUTENTICADO,
-        // só os utilizadores do tipo RecursosHumanos ou Tecnicos têm acesso
+        // só os utilizadores do tipo RecursosHumanos ou Administrador têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
         ////[Authorize(Roles = "RecursosHumanos")]  // exemplo de uma situação em que 
