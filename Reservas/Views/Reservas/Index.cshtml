@@ -1,4 +1,5 @@
-﻿@model Reservas.Models.Reservas
+﻿@model IEnumerable<Reservas.Models.ReservaLugar>
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,5 +10,41 @@
 
 <h2 style="padding-top: 10px">Fazer reserva</h2>
 
-<p>Hello from our View Template!</p>
+<p>
+    @Html.ActionLink("Novo Cliente", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LocalDaReserva)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataDaReserva)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClienteFK)
+        </th>
+        <th></th>
+    </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalDaReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDaReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteFK)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
