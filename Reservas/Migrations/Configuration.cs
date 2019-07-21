@@ -40,31 +40,30 @@ namespace Reservas.Migrations
             context.SaveChanges();
 
             //*********************************************************************
-            // adiciona VIATURAS
-            var viaturas = new List<Viaturas> {
-               new Viaturas {ID=1, Matricula="AT-47-45",  Marca="Ford",  Modelo="Focus WRC", NomeDono="Tiago Lopes",  MoradaDono="Rua de Coimbra",  CodPostalDono="2300-471 TOMAR" },
-               new Viaturas {ID=2, Matricula="BM-72-65",  Marca="Seat",  Modelo="Toledo",  NomeDono="Henrique Soares",  MoradaDono="Azinhaga de Bacelos",  CodPostalDono="2300-439 TOMAR" },
-               new Viaturas {ID=3, Matricula="CI-57-04",  Marca="Ferrari",  Modelo="Testarossa",  NomeDono="Luciano Fernandes",  MoradaDono="Travessa dos Arcos",  CodPostalDono="2300-602 TOMAR" },
-               new Viaturas {ID=4, Matricula="CQ-07-12",  Marca="Renault",  Modelo="Clio",  NomeDono="Mara Fernandes",  MoradaDono="Rua da Saboaria",  CodPostalDono="2300-559 TOMAR" },
-               new Viaturas {ID=5, Matricula="DM-21-48",  Marca="Ford",  Modelo="Mondeo",  NomeDono="Luciana Rocha",  MoradaDono="Rua Infantaria 15",  CodPostalDono="2300-583 TOMAR" },
-               new Viaturas {ID=6, Matricula="EU-59-11",  Marca="Renault",  Modelo="Espace",  NomeDono="Isabel Rosa",  MoradaDono="Rua Paulo Oliveira",  CodPostalDono="2300-514 TOMAR" },
-               new Viaturas {ID=7, Matricula="FJ-74-85",  Marca="Audi",  Modelo="TT",  NomeDono="Alexandre Vieira",  MoradaDono="Rua do Centro Republicano",  CodPostalDono="2300-359 TOMAR" },
-               new Viaturas {ID=8, Matricula="HC-41-61",  Marca="Fiat",  Modelo="Bravo",  NomeDono="Guilherme Rodrigues",  MoradaDono="Rua do Teatro",  CodPostalDono="2300-573 TOMAR" },
-               new Viaturas {ID=9, Matricula="HO-15-18",  Marca="Renault",  Modelo="Twingo",  NomeDono="Paulo Vieira",  MoradaDono="Rua da Cascalheira",  CodPostalDono="2300-464 TOMAR" },
-               new Viaturas {ID=10, Matricula="HV-21-24",  Marca="BMW",  Modelo="Serie 5",  NomeDono="João  Vieira",  MoradaDono="Rua Torres Pinheiro",  CodPostalDono="2300-538 TOMAR" },
-               new Viaturas {ID=11, Matricula="KK-71-88",  Marca="Renault",  Modelo="4L",  NomeDono="João Simões Lopes",  MoradaDono="Rua S. João",  CodPostalDono="2300-001 TOMAR" },
-               new Viaturas {ID=12, Matricula="LL-21-07",  Marca="Seat",  Modelo="Marbelha",  NomeDono="Henrique Dias",  MoradaDono="Caminho Água das Maias",  CodPostalDono="2300-632 TOMAR" },
-               new Viaturas {ID=13, Matricula="MJ-87-82",  Marca="Seat",  Modelo="Ibisa",  NomeDono="Tânia Fernandes",  MoradaDono="Avenida Doutor Vieira Guimarães",  CodPostalDono="2300-534 TOMAR" },
-               new Viaturas {ID=14, Matricula="NG-96-34",  Marca="Renault",  Modelo="Megane",  NomeDono="Guilherme Pinto",  MoradaDono="Rua de Leiria",  CodPostalDono="2300-565 TOMAR" },
-               new Viaturas {ID=15, Matricula="NS-21-62",  Marca="Fiat",  Modelo="Panda",  NomeDono="Rodrigo Vieira",  MoradaDono="Rua Doutor Oliveira Salazar",  CodPostalDono="2305-123 ASSEICEIRA TMR" },
-               new Viaturas {ID=16, Matricula="OI-17-31",  Marca="Fiat",  Modelo="Punto 75 SX",  NomeDono="Manuel Rodrigues",  MoradaDono="Rua Fernando Lopes Graça",  CodPostalDono="2300-493 TOMAR" },
-               new Viaturas {ID=17, Matricula="SM-38-87",  Marca="Porshe",  Modelo="911 Carrera",  NomeDono="Simone Vieira",  MoradaDono="Rua 1º de Maio",  CodPostalDono="2300-448 TOMAR" },
-               new Viaturas {ID=18, Matricula="TV-35-04",  Marca="Audi",  Modelo="A4",  NomeDono="Luciano Vieira",  MoradaDono="Largo da Saboaria",  CodPostalDono="2300-327 TOMAR" },
-               new Viaturas {ID=19, Matricula="UE-92-24",  Marca="Audi",  Modelo="A3",  NomeDono="Marcos Vieira",  MoradaDono="Avenida Dom Nuno Álvares Pereira",  CodPostalDono="2300-532 TOMAR" },
-               new Viaturas {ID=20, Matricula="XD-71-88",  Marca="BMW",  Modelo="Serie3",  NomeDono="Renato Vieira",  MoradaDono="Rua do Orfeão Tomarense",  CodPostalDono="2300-480 TOMAR" },
-               new Viaturas {ID=21, Matricula="ZG-74-16",  Marca="Skoda",  Modelo="Superb",  NomeDono="Fábio Ribeiro",  MoradaDono="Rua Dom Diogo Torralva",  CodPostalDono="2300-477 TOMAR" }
+            // adiciona lugares
+            var lugares = new List<Lugares> {
+               new Lugares {ID=1, Cidade="", livre=true, UserNameID = "lugar"},
+               new Lugares {ID=2, Cidade="", livre=true, UserNameID = "ll"},
+               new Lugares {ID=3, Cidade="", livre=true},
+               new Lugares {ID=4, Cidade="", livre=true},
+               new Lugares {ID=5, Cidade="", livre=true},
+               new Lugares {ID=6, Cidade="", livre=true},
+               new Lugares {ID=7, Cidade="", livre=true},
+               new Lugares {ID=8, Cidade="", livre=true},
+               new Lugares {ID=9, Cidade="", livre=true},
+               new Lugares {ID=10, Cidade="", livre=true},
+               new Lugares {ID=11, Cidade="", livre=true},
+               new Lugares {ID=12, Cidade="", livre=true},
+               new Lugares {ID=14, Cidade="", livre=true},
+               new Lugares {ID=15, Cidade="", livre=true},
+               new Lugares {ID=16, Cidade="", livre=true},
+               new Lugares {ID=17, Cidade="", livre=true},
+               new Lugares {ID=18, Cidade="", livre=true},
+               new Lugares {ID=19, Cidade="", livre=true},
+               new Lugares {ID=20, Cidade="", livre=true},
+               new Lugares {ID=21, Cidade="", livre=true}
             };
-            viaturas.ForEach(vv => context.Viaturas.AddOrUpdate(v => v.Matricula, vv));
+            lugares.ForEach(ll => context.Lugares.AddOrUpdate(l => l.ID, ll));
             context.SaveChanges();
 
             //*********************************************************************

@@ -49,7 +49,7 @@ namespace Reservas.Models
         public DbSet<ReservaLugar> ReservaLugar { get; set; } // tabela Reservas
         public DbSet<Tecnicos> Tecnicos { get; set; } // tabela Tecnicos
         public DbSet<Clientes> Clientes { get; set; } // tabela Clientes
-        public DbSet<Viaturas> Viaturas { get; set; } // tabela Viaturas
+        public DbSet<Lugares> Lugares { get; set; } // tabela lugares
 
 
         // método a ser executado no início da criação do Modelo

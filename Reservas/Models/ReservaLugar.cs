@@ -25,7 +25,7 @@ namespace Reservas.Models
         [ForeignKey("Viatura")]  //Anotações são feitas sobre o objeto que está por baixo
         public int ViaturaFK { get; set; }  //Base de Dados
 
-        public virtual Viaturas Viatura { get; set; }   // C#
+        public virtual Lugares Lugar { get; set; }   // C#
 
 
         [ForeignKey("Tecnico")]  //Anotações são feitas sobre o objeto que está por baixo
