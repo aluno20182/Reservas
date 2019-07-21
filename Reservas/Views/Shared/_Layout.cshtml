@@ -27,10 +27,7 @@
                         <a class="nav-link" href="../Home/Contact">Contactos</a>
                     </li>
 
-                    @* Adicionar a página da reserva(Href) *@
-                    <li class="nav-item ">
-                        <a class="nav-link" href="../Reservas">Fazer Reserva</a>
-                    </li>
+
 
                     @if (Request.IsAuthenticated && User.IsInRole("Administrador"))
                     {
@@ -46,12 +43,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../Clientes">Clientes</a>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="../Reservas">Reservas</a>
+                        </li>
 
                     }
 
                     @if (Request.IsAuthenticated && User.IsInRole("Cliente"))
                     {
-
+                        <li class="nav-item ">
+                            <a class="nav-link" href="../Reservas/Create">Fazer Reserva</a>
+                        </li>
                     }
 
                 </ul>

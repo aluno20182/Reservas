@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Reservas.Models
 {
-    public class Reservas
+    public class ReservaLugar
     {
         public int ID { get; set; }
 
@@ -38,6 +38,20 @@ namespace Reservas.Models
         public int ClienteFK { get; set; }  //Base de Dados
 
         public virtual Clientes Cliente { get; set; }   // C#
+
+
+        // *************************************
+        /// <summary>
+        ///  lista das multas associadas ao Tecnicos
+        /// </summary>
+        public virtual ICollection<ReservaLugar> ListaDeReservas { get; set; }
+        // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
+
+        // *************************************
+        // criar uma 'chave forasteira' para ligar um Tecnicos
+        // ao respetivo UserName
+        //  [Required]
+        public string UserNameID { get; set; }
 
     }
 }

@@ -25,7 +25,7 @@ namespace Reservas.Models
         //***************************************
 
         //lista das multas associadas à viatura
-        public ICollection<Reservas> ListaDeReservas { get; set; }
+        public ICollection<ReservaLugar> ListaDeReservas { get; set; }
 
 
     }
