@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create.</h2>
+<h2>Criar uma Função</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Role.</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -32,8 +31,8 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div  style="padding-left:inherit">
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {
