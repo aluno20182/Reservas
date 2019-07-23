@@ -4,25 +4,24 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details.</h2>
+<h2>Detalhes das Função</h2>
 
 <div>
-    <h4>Roles.</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            FUNÇÃO
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
     </dl>
 </div>
-<h4>List of users in this role</h4>
+<h4>Lista de utilizadores nesta role</h4>
 @if (ViewBag.UserCount == 0)
 {
     <hr />
-    <p>No users found in this role.</p>
+    <p>Não foram encontrados utilizadores.</p>
 }
 
 <table class="table">
@@ -37,8 +36,8 @@
     }
 </table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>
 
 

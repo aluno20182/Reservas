@@ -8,7 +8,7 @@ namespace Reservas.Models
     {
         public string Id { get; set; }
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "RoleName")]
+        [Display(Name = "Nome da Função")]
         public string Name { get; set; }
     }
 
@@ -17,7 +17,7 @@ namespace Reservas.Models
         public string Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "Email")]
+        [Display(Name = "Endereço Eletrónico")]
         [EmailAddress]
         public string Email { get; set; }
 

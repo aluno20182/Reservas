@@ -187,7 +187,7 @@ namespace Reservas.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Something failed.");
+            ModelState.AddModelError("", "Ocorreu um erro.");
             return View();
         }
 
