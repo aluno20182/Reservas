@@ -38,18 +38,16 @@ namespace Reservas.Models
         ///  lista das multas associadas ao Tecnicos
         /// </summary>
         /// 
-        //[ForeignKey("ReservaLugares")]
-        //public int  ReservaFK { get; set; }
-        //public virtual ReservaLugares ReservaLugares { get; set; }
-
-        public virtual ICollection<ReservaLugares> ListaDeReservas { get; set; }
-        // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
-
         // *************************************
         // criar uma 'chave forasteira' para ligar um Tecnicos
         // ao respetivo UserName
         //  [Required]
         public string UserNameID { get; set; }
+
+        public virtual ICollection<ReservaLugares> ListaDeReservas { get; set; }
+        // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
+
+
 
 
     }

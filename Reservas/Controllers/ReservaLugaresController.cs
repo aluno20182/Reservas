@@ -13,7 +13,7 @@ using Reservas.Models;
 namespace Reservas.Controllers
 {
     [Authorize]//Só pessoas autenticadas podem executar esas tarefas
-    public class ReservasController : Controller
+    public class ReservaLugaresController : Controller
     {
 
         // cria VAR que representa a BD
