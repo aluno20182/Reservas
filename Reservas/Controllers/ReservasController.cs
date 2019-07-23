@@ -38,12 +38,12 @@ namespace Reservas.Controllers
             var lista = db.ReservaLugar.OrderBy(m => m.ID).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursoHumanos, Administrador, Tecnico"))
-            {
-                // mostrar apenas os dados da pessoa
-                string userID = User.Identity.GetUserId();
-                lista = lista.Where(m => m.UserNameID == userID).ToList();
-            }
+            //if (!User.IsInRole("RecursoHumanos, Administrador, Tecnico"))
+            //{
+            //    // mostrar apenas os dados da pessoa
+            //    string userID = User.Identity.GetUserId();
+            //    lista = lista.Where(m => m.UserNameID == userID).ToList();
+            //}
 
             return View(lista);
         }

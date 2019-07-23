@@ -42,26 +42,26 @@ namespace Reservas.Migrations
             //*********************************************************************
             // adiciona lugares
             var lugares = new List<Lugares> {
-               new Lugares {ID=1, Cidade="Tomar", livre=true, UserNameID = "lugar"},
-               new Lugares {ID=2, Cidade="Tomar", livre=true, UserNameID = "ll"},
-               new Lugares {ID=3, Cidade="Porto", livre=true},
-               new Lugares {ID=4, Cidade="Porto", livre=true},
-               new Lugares {ID=5, Cidade="Tomar", livre=true},
-               new Lugares {ID=6, Cidade="Porto", livre=true},
-               new Lugares {ID=7, Cidade="Tomar", livre=true},
-               new Lugares {ID=8, Cidade="Porto", livre=true},
-               new Lugares {ID=9, Cidade="Porto", livre=true},
-               new Lugares {ID=10, Cidade="Porto", livre=true},
-               new Lugares {ID=11, Cidade="Coimbra", livre=true},
-               new Lugares {ID=12, Cidade="Tomar", livre=true},
-               new Lugares {ID=14, Cidade="Tomar", livre=true},
-               new Lugares {ID=15, Cidade="Lisboa", livre=true},
-               new Lugares {ID=16, Cidade="Lisboa", livre=true},
-               new Lugares {ID=17, Cidade="Lisboa", livre=true},
-               new Lugares {ID=18, Cidade="Lisboa", livre=true},
-               new Lugares {ID=19, Cidade="Lisboa", livre=true},
-               new Lugares {ID=20, Cidade="Lisboa", livre=true},
-               new Lugares {ID=21, Cidade="Tomar", livre=true}
+               new Lugares {ID=1, Cidade="Tomar", Livre=true},
+               new Lugares {ID=2, Cidade="Tomar", Livre=true},
+               new Lugares {ID=3, Cidade="Porto", Livre=true},
+               new Lugares {ID=4, Cidade="Porto", Livre=true},
+               new Lugares {ID=5, Cidade="Tomar", Livre=true},
+               new Lugares {ID=6, Cidade="Porto", Livre=true},
+               new Lugares {ID=7, Cidade="Tomar", Livre=true},
+               new Lugares {ID=8, Cidade="Porto", Livre=true},
+               new Lugares {ID=9, Cidade="Porto", Livre=true},
+               new Lugares {ID=10, Cidade="Porto", Livre=true},
+               new Lugares {ID=11, Cidade="Coimbra", Livre=true},
+               new Lugares {ID=12, Cidade="Tomar", Livre=true},
+               new Lugares {ID=14, Cidade="Tomar", Livre=true},
+               new Lugares {ID=15, Cidade="Lisboa", Livre=true},
+               new Lugares {ID=16, Cidade="Lisboa", Livre=true},
+               new Lugares {ID=17, Cidade="Lisboa", Livre=true},
+               new Lugares {ID=18, Cidade="Lisboa", Livre=true},
+               new Lugares {ID=19, Cidade="Lisboa", Livre=true},
+               new Lugares {ID=20, Cidade="Lisboa", Livre=true},
+               new Lugares {ID=21, Cidade="Tomar", Livre=true}
             };
             lugares.ForEach(ll => context.Lugares.AddOrUpdate(l => l.ID, ll));
             context.SaveChanges();

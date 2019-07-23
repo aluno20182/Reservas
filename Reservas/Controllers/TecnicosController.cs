@@ -37,14 +37,12 @@ namespace Reservas.Controllers
             var lista = db.Tecnicos.OrderBy(a => a.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            if (!User.IsInRole("RecursosHumanos"))
-            {
-                // mostrar apenas os dados da pessoa
-                string userID = User.Identity.GetUserId();
-                lista = lista.Where(a => a.UserNameID == userID).ToList();
-                return RedirectToAction("Details", new { id = userID });
-
-            }
+            //if (!User.IsInRole("RecursosHumanos, Administrador"))
+            //{
+            //    // mostrar apenas os dados da pessoa
+            //    string userID = User.Identity.GetUserId();
+            //    lista = lista.Where(a => a.UserNameID == userID).ToList();
+            //}
 
             return View(lista);
         }
@@ -97,7 +95,7 @@ namespace Reservas.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        [Authorize(Roles = "RecursosHumanos")]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
 
         public ActionResult Create()
         {
@@ -114,7 +112,7 @@ namespace Reservas.Controllers
         /// <param name="tecnico">dados do novo Tecnico</param>
         /// <param name="fotografia">ficheiro com a foto do novo Tecnico</param>
         /// <returns></returns>
-        [Authorize(Roles = "RecursosHumanos, Tecnico")]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Nome, Cidade")] Tecnicos tecnico, HttpPostedFileBase fotografia)
@@ -188,6 +186,7 @@ namespace Reservas.Controllers
         }
 
         // GET: Tecnicos/Edit/5
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -207,6 +206,8 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
+
         public ActionResult Edit([Bind(Include = "ID,Nome,Cidade,Fotografia")] Tecnicos tecnico)
         {
             if (ModelState.IsValid)
@@ -279,6 +280,8 @@ namespace Reservas.Controllers
         /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
+
         public ActionResult DeleteConfirmed(int? id)
         {
 

@@ -339,6 +339,9 @@
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Reservas\Index.cshtml" />
     <Content Include="Views\Reservas\Create.cshtml" />
+    <Content Include="Views\Reservas\Edit.cshtml" />
+    <Content Include="Views\Reservas\Delete.cshtml" />
+    <Content Include="Views\Reservas\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -379,7 +382,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties content_4bootstrap-reboot_1min_1css_1map__JsonSchema="" content_4bootstrap-reboot_1css_1map__JsonSchema="" />
+      <UserProperties content_4bootstrap-reboot_1css_1map__JsonSchema="" content_4bootstrap-reboot_1min_1css_1map__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

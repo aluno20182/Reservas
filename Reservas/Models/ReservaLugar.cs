@@ -9,6 +9,12 @@ namespace Reservas.Models
 {
     public class ReservaLugar
     {
+
+        public ReservaLugar()
+        {
+            ListaDeReservas = new HashSet<ReservaLugar>();
+        }
+        [Key]
         public int ID { get; set; }
 
         [Display(Name = "Local da reserva")]
@@ -30,14 +36,17 @@ namespace Reservas.Models
 
         [ForeignKey("Tecnico")]  //Anotações são feitas sobre o objeto que está por baixo
         public int TecnicoFK { get; set; }  //Base de Dados
-
         public virtual Tecnicos Tecnico { get; set; }   // C#
 
         
         [ForeignKey("Cliente")]  //Anotações são feitas sobre o objeto que está por baixo
         public int ClienteFK { get; set; }  //Base de Dados
-
         public virtual Clientes Cliente { get; set; }   // C#
+
+
+        //[ForeignKey("Lugar")]  //Anotações são feitas sobre o objeto que está por baixo
+        //public int LugarFK { get; set; }  //Base de Dados
+        //public virtual Lugares Lugar { get; set; }   // C#
 
 
         // *************************************

@@ -42,7 +42,7 @@ namespace Reservas.Controllers
             {
                 // mostrar apenas os dados da pessoa
                 string userID = User.Identity.GetUserId();
-                lista = lista.Where(m => m.UserNameID == userID).ToList();
+                //lista = lista.Where(c => c.UserNameID == userID).ToList();
             }
 
             return View(lista);
@@ -68,6 +68,7 @@ namespace Reservas.Controllers
             ///    - é o Cliente, q só acede aos seus dados
 
             Lugares lugar = db.Lugares.Find(id);
+            Clientes cliente = db.Clientes.Find(id);
             if (lugar == null)
             {
                 return RedirectToAction("Index");
@@ -78,7 +79,7 @@ namespace Reservas.Controllers
             // será que tenho autorização para aceder aos seus dados?
             if (User.IsInRole("RecursosHumanos") ||
                 User.IsInRole("GestorReservas") ||
-                lugar.UserNameID == User.Identity.GetUserId())
+                cliente.UserNameID == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Cliente
                 return View(lugar);

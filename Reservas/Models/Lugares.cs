@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,11 +8,19 @@ namespace Reservas.Models
 {
     public class Lugares
     {
+        public Lugares()
+        {
+            ListaDeReservas = new HashSet<ReservaLugar>();
+        }
+        [Key]
         public int ID { get; set; }
+
+        [Required]
 
         public string Cidade { get; set; }
 
-        public bool livre { get; set; }
+        [Required]
+        public bool Livre { get; set; }
 
         // *************************************
         /// <summary>
@@ -24,6 +33,6 @@ namespace Reservas.Models
         // criar uma 'chave forasteira' para ligar um Cliente
         // ao respetivo UserName
         //  [Required]
-        public string UserNameID { get; set; }
+        //public string UserNameID { get; set; }
     }
 }

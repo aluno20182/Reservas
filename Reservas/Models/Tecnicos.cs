@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -36,6 +37,11 @@ namespace Reservas.Models
         /// <summary>
         ///  lista das multas associadas ao Tecnicos
         /// </summary>
+        /// 
+        //[ForeignKey("ReservaLugar")]
+        //public int  ReservaFK { get; set; }
+        //public virtual ReservaLugar ReservaLugar { get; set; }
+
         public virtual ICollection<ReservaLugar> ListaDeReservas { get; set; }
         // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
 

@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         private ReservasDB db = new ReservasDB();
 
         // GET: Clientes
-        [Authorize(Roles = "RecursoHumanos, Administrador")] // além de AUTENTICADO,
+        [Authorize(Roles = "RecursosHumanos, Administrador")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
         //*****************************************************
@@ -37,7 +37,7 @@ namespace Reservas.Controllers
             var lista = db.Clientes.OrderBy(cc => cc.Nome).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
-            //if (!User.IsInRole("RecursoHumanos, Tecnico"))
+            //if (!User.IsInRole("RecursoHumanos, Administrador"))
             //{
             //    // mostrar apenas os dados da pessoa
             //    string userID = User.Identity.GetUserId();
