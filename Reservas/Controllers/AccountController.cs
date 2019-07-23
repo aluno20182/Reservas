@@ -159,7 +159,7 @@ namespace Reservas.Controllers
                     //atribui a role ao utilizador criado.
                     var result1 = UserManager.AddToRole(user.Id, "Cliente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     ModelState.AddModelError("", string.Format("Ocorreu um erro"));
                 }

@@ -7,34 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Tecnicos</h4>
+    <h4>Reserva Lugar</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.LocalDaReserva)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fotografia)
-        </dt>
-
-        <dd>
-            <img src="~/imagens/@Model.Fotografia" height="150" />
-
-
-            @*@Html.DisplayFor(model => model.Fotografia)*@
+            @Html.DisplayFor(model => model.DataDaReserva)
         </dd>
 
     </dl>

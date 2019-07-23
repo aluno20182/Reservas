@@ -270,7 +270,7 @@
     <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ReservaLugar.cs" />
+    <Compile Include="Models\ReservaLugares.cs" />
     <Compile Include="Models\Tecnicos.cs" />
     <Compile Include="Models\Lugares.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

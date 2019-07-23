@@ -67,7 +67,7 @@ namespace Reservas.Controllers
             ///        - neste caso em concreto, acede aos dados de qq Cliente
             ///    - é o Cliente, q só acede aos seus dados
 
-            ReservaLugar reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
             if (reservaLugar == null)
             {
                 return RedirectToAction("Index");
@@ -115,7 +115,7 @@ namespace Reservas.Controllers
         [Authorize(Roles = "Administrador, Cliente")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] ReservaLugar reservaLugar)
+        public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] ReservaLugares reservaLugar)
         {
 
             /// confronta os dados q vêm da view com a forma que os dados devem ter.
@@ -140,7 +140,7 @@ namespace Reservas.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReservaLugar reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
             if (reservaLugar == null)
             {
                 return View();
@@ -153,7 +153,7 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome")] ReservaLugar reservaLugar)
+        public ActionResult Edit([Bind(Include = "ID,Nome")] ReservaLugares reservaLugar)
         {
             if (ModelState.IsValid)
             {
@@ -189,7 +189,7 @@ namespace Reservas.Controllers
             }
 
             // procura os dados do Clientes, cujo ID é fornecido
-            ReservaLugar reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
 
 
             /// se a reserva não fôr encontrado
@@ -254,7 +254,7 @@ namespace Reservas.Controllers
             }
 
             // procura os dados do Cliente, na BD
-            ReservaLugar reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
 
             if (reservaLugar == null)
             {

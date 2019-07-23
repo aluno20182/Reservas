@@ -40,8 +40,6 @@
                 @* permite a introdução dos dados da fotografia do Agente *@
                 <input type="file" accept=".jpg,.png" name="fotografia" />
 
-                @* textbox para introduzir o nome da fotografia
-        @Html.EditorFor(model => model.Fotografia, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Fotografia, "", new { @class = "text-danger" })
             </div>
         </div>
