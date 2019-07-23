@@ -330,11 +330,11 @@
     <Content Include="Views\Clientes\Details.cshtml" />
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
-    <Content Include="Views\Reservas\Index.cshtml" />
-    <Content Include="Views\Reservas\Create.cshtml" />
-    <Content Include="Views\Reservas\Edit.cshtml" />
-    <Content Include="Views\Reservas\Delete.cshtml" />
-    <Content Include="Views\Reservas\Details.cshtml" />
+    <Content Include="Views\ReservaLugares\Index.cshtml" />
+    <Content Include="Views\ReservaLugares\Create.cshtml" />
+    <Content Include="Views\ReservaLugares\Edit.cshtml" />
+    <Content Include="Views\ReservaLugares\Delete.cshtml" />
+    <Content Include="Views\ReservaLugares\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -375,7 +375,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties content_4bootstrap-reboot_1css_1map__JsonSchema="" content_4bootstrap-reboot_1min_1css_1map__JsonSchema="" />
+      <UserProperties content_4bootstrap-reboot_1min_1css_1map__JsonSchema="" content_4bootstrap-reboot_1css_1map__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

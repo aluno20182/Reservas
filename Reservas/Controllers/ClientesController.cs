@@ -68,6 +68,7 @@ namespace Reservas.Controllers
             ///    - é o Cliente, q só acede aos seus dados
 
             Clientes cliente = db.Clientes.Find(id);
+
             if (cliente == null)
             {
                 return RedirectToAction("Index");

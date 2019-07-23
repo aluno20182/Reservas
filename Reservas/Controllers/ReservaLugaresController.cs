@@ -112,12 +112,12 @@ namespace Reservas.Controllers
         /// <summary>
         /// recolhe os dados da View, sobre um novo Cliente
         /// </summary>
-        /// <param name="reservaLugar">dados do novo Cliente</param>
+        /// <param name="reservaLugar">dados da nova Reserva</param>
         /// <returns></returns>
         [Authorize(Roles = "Administrador, Cliente")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] ReservaLugares reservaLugar)
+        public ActionResult Create([Bind(Include = "LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)
         {
 
             /// confronta os dados q vêm da view com a forma que os dados devem ter.
@@ -155,7 +155,7 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome")] ReservaLugares reservaLugar)
+        public ActionResult Edit([Bind(Include = "LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)
         {
             if (ModelState.IsValid)
             {
