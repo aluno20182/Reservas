@@ -11,7 +11,7 @@ namespace Reservas.Models
     {
         public Tecnicos()
         {
-            ListaDeTecnicos = new HashSet<Tecnicos>();
+            ListaDeReservas = new HashSet<ReservaLugares>();
         }
 
         [Key] // identifica este atributo como Primary Key
@@ -38,11 +38,11 @@ namespace Reservas.Models
         ///  lista das multas associadas ao Tecnicos
         /// </summary>
         /// 
-        //[ForeignKey("ReservaLugar")]
+        //[ForeignKey("ReservaLugares")]
         //public int  ReservaFK { get; set; }
-        //public virtual ReservaLugar ReservaLugar { get; set; }
+        //public virtual ReservaLugares ReservaLugares { get; set; }
 
-        public virtual ICollection<Tecnicos> ListaDeTecnicos { get; set; }
+        public virtual ICollection<ReservaLugares> ListaDeReservas { get; set; }
         // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
 
         // *************************************

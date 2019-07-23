@@ -9,14 +9,11 @@ namespace Reservas.Models
 {
     public class Lugares
     {
-        public Lugares()
-        {
-            ListaDeLugares = new HashSet<Lugares>();
-        }
+
         [Key]
         public int ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         public string Cidade { get; set; }
 
         [Required]
@@ -24,21 +21,10 @@ namespace Reservas.Models
 
         /*******************************************************************************/
 
-        [ForeignKey("Cliente")]  //Anotações são feitas sobre o objeto que está por baixo
-        public int ClienteFK { get; set; }  //Base de Dados
-        public virtual Clientes Cliente { get; set; }   // C#
-
         [ForeignKey("ReservaLugar")]  //Anotações são feitas sobre o objeto que está por baixo
         public int ReservaLugarFK { get; set; }  //Base de Dados
         public virtual ReservaLugares ReservaLugar { get; set; }   // C#
 
 
-
-        // *************************************
-        /// <summary>
-        ///  lista das lugares associadas aos Clientes
-        /// </summary>
-        public virtual ICollection<Lugares> ListaDeLugares { get; set; }
-        // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
     }
 }

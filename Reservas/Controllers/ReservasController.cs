@@ -19,7 +19,7 @@ namespace Reservas.Controllers
         // cria VAR que representa a BD
         private ReservasDB db = new ReservasDB();
 
-        // GET: ReservaLugar
+        // GET: ReservaLugares
         [Authorize(Roles = "Administrador, Tecnico, Cliente")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
@@ -35,7 +35,7 @@ namespace Reservas.Controllers
 
             // Instrução feita em LINQ
             // SELECT * FROM Clientes ORDER BY nome
-            var lista = db.ReservaLugar.OrderBy(m => m.ID).ToList();
+            var lista = db.ReservaLugares.OrderBy(m => m.ID).ToList();
             // filtrar os dados se a pessoa
             // NÃO pertence ao role 'RecursoHumanos' 
             //if (!User.IsInRole("RecursoHumanos, Administrador, Tecnico"))
@@ -48,7 +48,7 @@ namespace Reservas.Controllers
             return View(lista);
         }
 
-        // GET: ReservaLugar/Details/5
+        // GET: ReservaLugares/Details/5
         /// <summary>
         /// Mostra os dados de um Cliente 
         /// </summary>
@@ -67,7 +67,9 @@ namespace Reservas.Controllers
             ///        - neste caso em concreto, acede aos dados de qq Cliente
             ///    - é o Cliente, q só acede aos seus dados
 
-            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugares.Find(id);
+
+            Clientes cliente = db.Clientes.Find(id); ;
             if (reservaLugar == null)
             {
                 return RedirectToAction("Index");
@@ -78,7 +80,7 @@ namespace Reservas.Controllers
             // será que tenho autorização para aceder aos seus dados?
             if (User.IsInRole("RecursosHumanos") ||
                 User.IsInRole("GestorReservas") ||
-                reservaLugar.UserNameID == User.Identity.GetUserId())
+                cliente.UserNameID == User.Identity.GetUserId())
             {
                 // se isto se verifica , posso ver os dados do Cliente
                 return View(reservaLugar);
@@ -90,7 +92,7 @@ namespace Reservas.Controllers
             }
         }
 
-        // GET: ReservaLugar/Create
+        // GET: ReservaLugares/Create
         /// <summary>
         /// mostra a view para carregar os dados de um novo Cliente
         /// </summary>
@@ -103,7 +105,7 @@ namespace Reservas.Controllers
             return View();
         }
 
-        // POST: ReservaLugar/Create
+        // POST: ReservaLugares/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 
@@ -122,7 +124,7 @@ namespace Reservas.Controllers
             /// ie, valida os dados com o Modelo
             if (ModelState.IsValid)
             {
-                db.ReservaLugar.Add(reservaLugar);
+                db.ReservaLugares.Add(reservaLugar);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -133,14 +135,14 @@ namespace Reservas.Controllers
 
 
 
-        // GET: ReservaLugar/Edit/5
+        // GET: ReservaLugares/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugares.Find(id);
             if (reservaLugar == null)
             {
                 return View();
@@ -148,7 +150,7 @@ namespace Reservas.Controllers
             return View(reservaLugar);
         }
 
-        // POST: ReservaLugar/Edit/5
+        // POST: ReservaLugares/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -164,7 +166,7 @@ namespace Reservas.Controllers
             return View(reservaLugar);
         }
 
-        // GET: ReservaLugar/Delete/5
+        // GET: ReservaLugares/Delete/5
         /// <summary>
         /// mostra na view os dados de um Cliente para porterior, eventual, remoção
         /// </summary>
@@ -189,7 +191,7 @@ namespace Reservas.Controllers
             }
 
             // procura os dados do Clientes, cujo ID é fornecido
-            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugares.Find(id);
 
 
             /// se a reserva não fôr encontrado
@@ -211,13 +213,13 @@ namespace Reservas.Controllers
             ///      (quem estiver a usar o Asp .Net Core já não tem esta ferramenta...)
             /// - outras opções...
             Session["IdReserva"] = reservaLugar.ID;
-            Session["Metodo"] = "ReservaLugar/Delete";
+            Session["Metodo"] = "ReservaLugares/Delete";
 
             // envia para a View os dados do Cliente encontrado
             return View(reservaLugar);
         }
 
-        // POST: ReservaLugar/Delete/5
+        // POST: ReservaLugares/Delete/5
         /// <summary>
         /// concretizar a operação de remoção de um Cliente
         /// </summary>
@@ -245,7 +247,7 @@ namespace Reservas.Controllers
             }
 
             // avaliar se o método é o que é esperado
-            string operacao = "ReservaLugar/Delete";
+            string operacao = "ReservaLugares/Delete";
             if (operacao != (string)Session["Metodo"])
             {
                 // há um ataque!
@@ -254,7 +256,7 @@ namespace Reservas.Controllers
             }
 
             // procura os dados do Cliente, na BD
-            ReservaLugares reservaLugar = db.ReservaLugar.Find(id);
+            ReservaLugares reservaLugar = db.ReservaLugares.Find(id);
 
             if (reservaLugar == null)
             {
@@ -264,7 +266,7 @@ namespace Reservas.Controllers
 
             try
             {
-                db.ReservaLugar.Remove(reservaLugar);
+                db.ReservaLugares.Remove(reservaLugar);
                 db.SaveChanges();
             }
             catch (Exception)

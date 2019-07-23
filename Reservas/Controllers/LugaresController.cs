@@ -218,7 +218,7 @@ namespace Reservas.Controllers
             return View(lugar);
         }
 
-        // POST: ReservaLugar/Delete/5
+        // POST: ReservaLugares/Delete/5
         /// <summary>
         /// concretizar a operação de remoção de um Lugar
         /// </summary>

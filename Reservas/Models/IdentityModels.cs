@@ -46,7 +46,7 @@ namespace Reservas.Models
 
         // vamos colocar, aqui, as instruções relativas às tabelas do 'negócio'
         // descrever os nomes das tabelas na Base de Dados
-        public DbSet<ReservaLugares> ReservaLugar { get; set; } // tabela Reservas
+        public DbSet<ReservaLugares> ReservaLugares { get; set; } // tabela Reservas
         public DbSet<Tecnicos> Tecnicos { get; set; } // tabela Tecnicos
         public DbSet<Clientes> Clientes { get; set; } // tabela Clientes
         public DbSet<Lugares> Lugares { get; set; } // tabela lugares

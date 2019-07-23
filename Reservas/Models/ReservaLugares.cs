@@ -12,7 +12,7 @@ namespace Reservas.Models
 
         public ReservaLugares()
         {
-            ListaDeReservas = new HashSet<ReservaLugares>();
+            ListaDeLugares = new HashSet<Lugares>();
         }
         [Key]
         public int ID { get; set; }
@@ -27,12 +27,6 @@ namespace Reservas.Models
         //  *************************************
         //  Criação das chaves Forasteiras
         //  *************************************
-
-        //  FK para Viatura
-        //[ForeignKey("Lugar")]  //Anotações são feitas sobre o objeto que está por baixo
-        //public int LugarFK { get; set; }  //Base de Dados
-
-        //public virtual Lugares Lugar { get; set; }   // C#
 
 
         [ForeignKey("Tecnico")]  //Anotações são feitas sobre o objeto que está por baixo
@@ -49,7 +43,7 @@ namespace Reservas.Models
         /// <summary>
         ///  lista das multas associadas ao Tecnicos
         /// </summary>
-        public virtual ICollection<ReservaLugares> ListaDeReservas { get; set; }
+        public virtual ICollection<Lugares> ListaDeLugares { get; set; }
         // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
 
 
