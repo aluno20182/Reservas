@@ -28,7 +28,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../Reservas/Create">Fazer Reserva</a>
+                        <a class="nav-link" href="../ReservaLugares/Create">Fazer Reserva</a>
                     </li>
 
                     @if (Request.IsAuthenticated && User.IsInRole("Administrador"))
@@ -46,7 +46,7 @@
                             <a class="nav-link" href="../Clientes">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../Reservas">Reservas</a>
+                            <a class="nav-link" href="../ReservaLugares">Reservas</a>
                         </li>
 
                     }
@@ -54,14 +54,14 @@
                     @if (Request.IsAuthenticated && User.IsInRole("Tecnico"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="../Reservas">Reservas</a>
+                            <a class="nav-link" href="../ReservaLugares">Reservas</a>
                         </li>
                     }
 
                     @if (Request.IsAuthenticated && User.IsInRole("Cliente"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="../Reservas">Minhas Reservas</a>
+                            <a class="nav-link" href="../ReservaLugares">Minhas Reservas</a>
                         </li>
                     }
 
