@@ -45,8 +45,6 @@ namespace Reservas.Models
 
         public DateTime DataValidadeCarta { get; set; }
 
-        public string UserNameID { get; set; }
-
         // *************************************
         /// <summary>
         ///  lista das reservas associadas aos Clientes
@@ -54,5 +52,10 @@ namespace Reservas.Models
         public virtual ICollection<ReservaLugares> ListaDeReservas { get; set; }
         // este termo 'virtual' vai ativar a funcionalidade de 'lazy loading'
 
+        // *************************************
+        // criar uma 'chave forasteira' para ligar um Cliente
+        // ao respetivo UserName
+        //  [Required]
+        public string UserNameID { get; set; }
     }
 }

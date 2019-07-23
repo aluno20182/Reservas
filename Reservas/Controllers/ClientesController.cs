@@ -116,7 +116,7 @@ namespace Reservas.Controllers
         [Authorize(Roles = "RecursosHumanos, Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Nome, CC, NIF, Telemovel, Email, LocalEmissao")] Clientes cliente, HttpPostedFileBase fotografia)
+        public ActionResult Create([Bind(Include = "Nome, LocalEmissao")] Clientes cliente, HttpPostedFileBase fotografia)
         {
             /// precisamos de processar a fotografia
             /// 1º será q foi fornecido um ficheiro?

@@ -1,10 +1,10 @@
-﻿@model Reservas.Models.Clientes
+﻿@model IEnumerable<Reservas.Models.Clientes>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Listagem de Clientes</h2>
+    <h2>Listagem de Clientes</h2>
 
 <p>
     @Html.ActionLink("Novo Cliente", "Create")
@@ -28,25 +28,25 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <th>
-                @Html.DisplayFor(modelItem => item.Email)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.CC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NIF)
-            </td>
+     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.Email)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.CC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIF)
+        </td>
 
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
+        </td>
+    </tr>
     }
 </table>
