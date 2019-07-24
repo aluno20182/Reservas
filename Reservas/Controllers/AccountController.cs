@@ -18,7 +18,7 @@ namespace Reservas.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -84,6 +84,8 @@ namespace Reservas.Controllers
             }
         }
 
+
+
         //
         // GET: /Account/Register
         [HttpGet]
@@ -112,12 +114,13 @@ namespace Reservas.Controllers
                 catch (Exception)
                 {
                     ModelState.AddModelError("", string.Format("Ocorreu um erro"));
+
                 }
                 if (result.Succeeded)
                 {
-                 return View(model);
+                    return View(model);
                 }
-                AddErrors(result);
+
             }
 
             // Se ocorrer algum erro retorna à view
@@ -134,15 +137,6 @@ namespace Reservas.Controllers
             return View();
         }
 
-              
-        //
-        // GET: /Account/ForgotPasswordConfirmation
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
-        {
-            return View();
-        }
 
         //
         // GET: /Account/ResetPassword
@@ -191,6 +185,27 @@ namespace Reservas.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //
+        // GET: /Account/ResetPasswordConfirmation
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ExternalLogin
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExternalLogin(string provider, string returnUrl)
+        {
+            // Request a redirect to the external login provider
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+        }
+
+       
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -227,6 +242,15 @@ namespace Reservas.Controllers
             public string UserId { get; set; }
 
         }
+        //
+        // GET: /Account/ExternalLoginFailure
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ExternalLoginFailure()
+        {
+            return View();
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -238,6 +262,6 @@ namespace Reservas.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-        #endregion
     }
 }
+#endregion
