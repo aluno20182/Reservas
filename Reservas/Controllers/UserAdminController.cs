@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Reservas.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrador")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
