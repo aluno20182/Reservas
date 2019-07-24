@@ -19,7 +19,7 @@ namespace Reservas.Models
 
         [Required(ErrorMessage = "O Nome é de preenchimento obrigatório.")]
         //[StringLength(50, ErrorMessage = "O {0} deve ter, no máximo, {1} caracteres.")]
-        [RegularExpression("[A-Z][a-z]+(( |-)[A-Z][a-z]+)*",
+        [RegularExpression("([a-zA-Z]|[à-ü]|[À-Ü])*",
                           ErrorMessage = "O {0} só pode conter letras. Cada palavra deve começar com uma Maiúscula.")]
         public string Nome { get; set; }
 
