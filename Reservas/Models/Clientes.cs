@@ -22,7 +22,7 @@ namespace Reservas.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "O CC é de preenchimento obrigatório.")]
-        [RegularExpression("^[1-9][0-9]{1,7}$", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 7 numeros")]
+        [RegularExpression("^[1-9][0-9]{1,8}$", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 8 numeros")]
         public string CC { get; set; }
 
         [RegularExpression("^([1-9][0-9]{1,9}$)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
@@ -31,25 +31,25 @@ namespace Reservas.Models
         [RegularExpression("^9[1236]{1}[0-9]{7}$|^2[3-9]{2}[0-9]{6}$|^2[12]{1}[0-9]{7}$", ErrorMessage = "Inserção inválida, colocar os primeiros números(92,96,91) e os restantes de 0 a 9 complentando 9 numeros")]
         public string Telemovel { get; set; }
         //Esta regular expression falha se:
-
-        //houvir outro subdominio depois do @ .
-
+        //houver outro subdominio depois do @ .
         //Se depois do ponto houver mais que 3 caracteres, como por exemplo .info
 
-        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Coloque o endereço de email correto")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Coloque o endereço de email correto(não cologque outro subdominio depois do @, e não coloque correios eletronicos que depois do ponto tiverem mais que 3 caracteres, como por exemplo .info")]
         public string Email { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime DataNascimento { get; set; }
 
         public string Fotografia { get; set; }
 
 
-        [RegularExpression("([1-9][0-9]{1,9}*)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
+        [RegularExpression("([1-9][0-9]{1,9})", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
         public string NumCartaConducao { get; set; }
 
-        //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         public string LocalEmissao { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime DataValidadeCarta { get; set; }
 
         public string UserNameID { get; set; }
