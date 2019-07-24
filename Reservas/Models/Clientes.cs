@@ -23,6 +23,7 @@ namespace Reservas.Models
 
         [Required(ErrorMessage = "O CC é de preenchimento obrigatório.")]
         [RegularExpression("^[1-9][0-9]{1,8}$", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 8 numeros")]
+        [Display(Name = "Cartão de Cidadão")]
         public string CC { get; set; }
 
         [RegularExpression("^([1-9][0-9]{1,9}$)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]

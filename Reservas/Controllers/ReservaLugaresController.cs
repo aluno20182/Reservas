@@ -86,7 +86,7 @@ namespace Reservas.Controllers
         }
 
         // GET: ReservaLugares/Create
-        [Authorize(Roles = "Administrador, Cliente")]
+        [Authorize(Roles = "RecursoHumanos, Administrador, Cliente")]
 
         public ActionResult Create()
         {
@@ -152,7 +152,8 @@ namespace Reservas.Controllers
         // POST: ReservaLugares/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)
+        [Authorize(Roles = "Administrador")]
+        public ActionResult Edit([Bind(Include = "ID, LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)
         {
             if (ModelState.IsValid)
             {
