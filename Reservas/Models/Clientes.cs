@@ -25,7 +25,7 @@ namespace Reservas.Models
         [RegularExpression("^[1-9][0-9]{1,7}$", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 7 numeros")]
         public string CC { get; set; }
 
-        [RegularExpression("^([1-9][0-9]{1,7}$)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
+        [RegularExpression("^([1-9][0-9]{1,9}$)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
         public string NIF { get; set; }
 
         [RegularExpression("^9[1236]{1}[0-9]{7}$|^2[3-9]{2}[0-9]{6}$|^2[12]{1}[0-9]{7}$", ErrorMessage = "Inserção inválida, colocar os primeiros números(92,96,91) e os restantes de 0 a 9 complentando 9 numeros")]
@@ -36,7 +36,7 @@ namespace Reservas.Models
 
         //Se depois do ponto houver mais que 3 caracteres, como por exemplo .info
 
-        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Count must be a natural number")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Coloque o endereço de email correto")]
         public string Email { get; set; }
 
         public DateTime DataNascimento { get; set; }
@@ -44,7 +44,7 @@ namespace Reservas.Models
         public string Fotografia { get; set; }
 
 
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        [RegularExpression("([1-9][0-9]{1,9}*)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
         public string NumCartaConducao { get; set; }
 
         //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
