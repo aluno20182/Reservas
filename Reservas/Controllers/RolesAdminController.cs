@@ -69,10 +69,9 @@ namespace Reservas.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var role = await RoleManager.FindByIdAsync(id);
-            // Get the list of Users in this Role
+            // Vai buscar a lista de utilizadores da sua função
             var users = new List<ApplicationUser>();
-
-            // Get the list of Users in this Role
+            //Verifica a função do utilizador e insere nos users
             foreach (var user in UserManager.Users.ToList())
             {
                 if (await UserManager.IsInRoleAsync(user.Id, role.Name))
