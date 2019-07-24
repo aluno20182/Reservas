@@ -52,7 +52,6 @@
                 @Html.DisplayFor(modelItem => item.Tecnico.Nome)
             </td>
             <td>
-                @Html.ActionLink("Ver Lugares", "Index", "Lugares", new { id = Model.ID }, null) | 
                 @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
