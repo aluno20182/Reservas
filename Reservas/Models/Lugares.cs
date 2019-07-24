@@ -13,10 +13,10 @@ namespace Reservas.Models
         [Key]
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
+        //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         public string Cidade { get; set; }
 
-        [Required(ErrorMessage = "O Lugar está ocupado ou foi inserido de forma errada")]
+        //[Required(ErrorMessage = "O Lugar está ocupado ou foi inserido de forma errada")]
         public bool Livre { get; set; }
 
         /*******************************************************************************/

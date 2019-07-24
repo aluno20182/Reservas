@@ -1,0 +1,47 @@
+﻿﻿@model IEnumerable<Reservas.Models.Lugares>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listagem de Tecnicos</h2>
+
+<p>
+    @Html.ActionLink("Novo Lugar", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Livre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Livre)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
