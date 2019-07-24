@@ -117,6 +117,10 @@ namespace Reservas.Controllers
             string caminho = "";
             bool haFoto = false;
 
+            if (fotografia != null)
+            {
+                haFoto = true;
+            }
             // há ficheiro?
             if (haFoto == false)
             {
@@ -138,7 +142,7 @@ namespace Reservas.Controllers
                     // nome do ficheiro
                     string nome = g.ToString() + extensao;
                     // onde guardar o ficheiro
-                    caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
+                    caminho = Path.Combine(Server.MapPath("~/Imagens"), nome);
                     // atribuir ao tecnico o nome do ficheiro
                     tecnico.Fotografia = nome;
                     // assinalar q há foto
