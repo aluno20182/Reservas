@@ -71,17 +71,12 @@ namespace Reservas.Controllers
                 return View(model);
             }
 
-            // This doen't count login failures towards lockout only two factor authentication
-            // To enable password failures to trigger lockout, change to shouldLockout: true
+            //Verifica se pode ou não dar login
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Endereço de email e/ou palavra passe incorretos.");
@@ -125,7 +120,7 @@ namespace Reservas.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
+            // Se ocorrer algum erro retorna à view
             return View(model);
         }
 

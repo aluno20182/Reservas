@@ -16,10 +16,10 @@ namespace Reservas.Models
         }
         [Key]
         public int ID { get; set; }
-
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         [Display(Name = "Local da reserva")]
         public string LocalDaReserva { get; set; }
-
+        [Required(ErrorMessage = "A Data de reserva é de preenchimento obrigatório!")]
         [Display(Name = "Data da reserva")]
         public DateTime DataDaReserva { get; set; }
 

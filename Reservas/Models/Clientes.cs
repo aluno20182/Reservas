@@ -13,31 +13,38 @@ namespace Reservas.Models
         public Clientes()
         {
             ListaDeReservas = new HashSet<ReservaLugares>();
-        } 
+        }
 
         [Key] // identifica este atributo como Primary Key
         public int ID { get; set; }
 
-        //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         public string Nome { get; set; }
 
-        //[Required(ErrorMessage = "O CC é de preenchimento obrigatório.")]
+        [Required(ErrorMessage = "O CC é de preenchimento obrigatório.")]
+        [RegularExpression("^[1-9][0-9]{1,7}$", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 7 numeros")]
         public string CC { get; set; }
 
-        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        [RegularExpression("^([1-9][0-9]{1,7}$)", ErrorMessage = "Inserção inválida, colocar o primeiro número de 1 a 9 e os restantes de 0 a 9 complentando 9 numeros")]
         public string NIF { get; set; }
 
-        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        [RegularExpression("^9[1236]{1}[0-9]{7}$|^2[3-9]{2}[0-9]{6}$|^2[12]{1}[0-9]{7}$", ErrorMessage = "Inserção inválida, colocar os primeiros números(92,96,91) e os restantes de 0 a 9 complentando 9 numeros")]
         public string Telemovel { get; set; }
+        //Esta regular expression falha se:
 
-        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+        //houvir outro subdominio depois do @ .
+
+        //Se depois do ponto houver mais que 3 caracteres, como por exemplo .info
+
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Count must be a natural number")]
         public string Email { get; set; }
 
         public DateTime DataNascimento { get; set; }
 
         public string Fotografia { get; set; }
 
-        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
         public string NumCartaConducao { get; set; }
 
         //[Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]

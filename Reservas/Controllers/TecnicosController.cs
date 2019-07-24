@@ -22,9 +22,7 @@ namespace Reservas.Controllers
         [Authorize(Roles = "RecursosHumanos, Administrador")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Administrador têm acesso
         // só precisa de pertencer a uma delas...
-        //*****************************************************
-        ////[Authorize(Roles = "RecursosHumanos")]  // exemplo de uma situação em que 
-        ////[Authorize(Roles = "Tecnicos")]          // os utilizadores TÊM AS DUAS Roles
+
         public ActionResult Index()
         {
 
@@ -35,14 +33,6 @@ namespace Reservas.Controllers
             // Instrução feita em LINQ
             // SELECT * FROM Tecnicos ORDER BY nome
             var lista = db.Tecnicos.OrderBy(a => a.Nome).ToList();
-            // filtrar os dados se a pessoa
-            // NÃO pertence ao role 'RecursoHumanos' 
-            //if (!User.IsInRole("RecursosHumanos, Administrador"))
-            //{
-            //    // mostrar apenas os dados da pessoa
-            //    string userID = User.Identity.GetUserId();
-            //    lista = lista.Where(a => a.UserNameID == userID).ToList();
-            //}
 
             return View(lista);
         }
@@ -202,8 +192,7 @@ namespace Reservas.Controllers
         }
 
         // POST: Tecnicos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "RecursosHumanos, Administrador")]

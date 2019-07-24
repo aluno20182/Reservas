@@ -113,38 +113,6 @@ namespace Reservas.Controllers
         }
 
         //
-        // POST: /Manage/EnableTFA
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EnableTFA()
-        {
-            var userId = User.Identity.GetUserId();
-            await UserManager.SetTwoFactorEnabledAsync(userId, true);
-            var user = await UserManager.FindByIdAsync(userId);
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", "Manage");
-        }
-
-        //
-        // POST: /Manage/DisableTFA
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DisableTFA()
-        {
-            var userId = User.Identity.GetUserId();
-            await UserManager.SetTwoFactorEnabledAsync(userId, false);
-            var user = await UserManager.FindByIdAsync(userId);
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", "Manage");
-        }
-       
-        //
         // GET: /Manage/ChangePassword
         [HttpGet]
         public ActionResult ChangePassword()
@@ -176,19 +144,6 @@ namespace Reservas.Controllers
             AddErrors(result);
             return View(model);
         }
-
-        //
-        // GET: /Manage/SetPassword
-        [HttpGet]
-        public ActionResult SetPassword()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Manage/SetPassword
-        [HttpPost]
-        [ValidateAntiForgeryToken]
 
 
         //

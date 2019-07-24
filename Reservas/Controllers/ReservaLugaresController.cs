@@ -36,14 +36,7 @@ namespace Reservas.Controllers
             // Instrução feita em LINQ
             // SELECT * FROM Clientes ORDER BY nome
             var lista = db.ReservaLugares.OrderBy(m => m.ID).ToList();
-            // filtrar os dados se a pessoa
-            // NÃO pertence ao role 'RecursoHumanos' 
-            //if (!User.IsInRole("RecursoHumanos, Administrador, Tecnico"))
-            //{
-            //    // mostrar apenas os dados da pessoa
-            //    string userID = User.Identity.GetUserId();
-            //    lista = lista.Where(m => m.UserNameID == userID).ToList();
-            //}
+            
 
             return View(lista);
         }
@@ -93,11 +86,6 @@ namespace Reservas.Controllers
         }
 
         // GET: ReservaLugares/Create
-        /// <summary>
-        /// mostra a view para carregar os dados de um novo Cliente
-        /// </summary>
-        /// <returns></returns>
-        /// 
         [Authorize(Roles = "Administrador, Cliente")]
 
         public ActionResult Create()
@@ -106,8 +94,6 @@ namespace Reservas.Controllers
         }
 
         // POST: ReservaLugares/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
 
         /// <summary>
         /// recolhe os dados da View, sobre um novo Cliente
@@ -151,8 +137,6 @@ namespace Reservas.Controllers
         }
 
         // POST: ReservaLugares/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)

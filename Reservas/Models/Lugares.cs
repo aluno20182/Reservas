@@ -16,7 +16,7 @@ namespace Reservas.Models
         [Required(ErrorMessage = "O {0} é de preenchimento obrigatório!")]
         public string Cidade { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O Lugar está ocupado ou foi inserido de forma errada")]
         public bool Livre { get; set; }
 
         /*******************************************************************************/

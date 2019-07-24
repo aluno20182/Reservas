@@ -22,9 +22,6 @@ namespace Reservas.Controllers
         [Authorize(Roles = "RecursosHumanos, Administrador")] // além de AUTENTICADO,
         // só os utilizadores do tipo RecursosHumanos ou Clientes têm acesso
         // só precisa de pertencer a uma delas...
-        //*****************************************************
-        ////[Authorize(Roles = "RecursosHumanos")]  // exemplo de uma situação em que 
-        ////[Authorize(Roles = "Clientes")]          // os utilizadores TÊM AS DUAS Roles
         public ActionResult Index()
         {
 
@@ -35,15 +32,6 @@ namespace Reservas.Controllers
             // Instrução feita em LINQ
             // SELECT * FROM Clientes ORDER BY nome
             var lista = db.Clientes.OrderBy(cc => cc.Nome).ToList();
-            // filtrar os dados se a pessoa
-            // NÃO pertence ao role 'RecursoHumanos' 
-            //if (!User.IsInRole("RecursoHumanos, Administrador"))
-            //{
-            //    // mostrar apenas os dados da pessoa
-            //    string userID = User.Identity.GetUserId();
-            //    lista = lista.Where(cc => cc.UserNameID == userID).ToList();
-            //    return RedirectToAction("Details", new { id = userID });
-            //}
 
             return View(lista);
         }
@@ -105,9 +93,7 @@ namespace Reservas.Controllers
         }
 
         // POST: Tecnicos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-
+        
         /// <summary>
         /// recolhe os dados da View, sobre um novo Cliente
         /// </summary>
@@ -197,8 +183,7 @@ namespace Reservas.Controllers
         }
 
         // POST: Clientes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Nome,LocalEmissao,Fotografia")] Clientes cliente)
@@ -240,7 +225,7 @@ namespace Reservas.Controllers
             Clientes cliente = db.Clientes.Find(id);
 
 
-            /// se o Cliente não fôr encontrado
+            /// se o Cliente não for encontrado
             if (cliente == null)
             {
                 // ou há um erro,
