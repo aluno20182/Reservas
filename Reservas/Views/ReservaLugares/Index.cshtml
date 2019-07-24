@@ -16,6 +16,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.LocalDaReserva)
         </th>
         <th>
@@ -24,12 +27,18 @@
         <th>
             @Html.DisplayNameFor(model => model.ClienteFK)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TecnicoFK)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr>  
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LocalDaReserva)
             </td>
@@ -37,9 +46,11 @@
                 @Html.DisplayFor(modelItem => item.DataDaReserva)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClienteFK)
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Tecnico.Nome)
+            </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
                 @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |

@@ -124,29 +124,42 @@ namespace Reservas.Controllers
             /// ie, valida os dados com o Modelo
             if (ModelState.IsValid)
             {
-                db.ReservaLugares.Add(reservaLugar);
-                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                try
+                {
+                    db.ReservaLugares.Add(reservaLugar);
+                    db.SaveChanges();
+
+                    return RedirectToAction("/");
+                }
+
+                catch (Exception)
+                {
+                    throw;
+                }
             }
-
             return View(reservaLugar);
         }
 
 
 
         // GET: ReservaLugares/Edit/5
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //alterar as respostas por defeito, de modo a não haver erros de BadRequest ou de NotFound  
+                return RedirectToAction("Index");
             }
             ReservaLugares reservaLugar = db.ReservaLugares.Find(id);
             if (reservaLugar == null)
             {
-                return View();
+                //alterar as respostas por defeito, de modo a não haver erros de BadRequest ou de NotFound  
+                return RedirectToAction("Index");
             }
+            ViewBag.TecnicoFK = new SelectList(db.Tecnicos, "ID", "Nome", reservaLugar.ID);
+            ViewBag.ClienteFK = new SelectList(db.Clientes, "ID", "Nome", reservaLugar.ID);
             return View(reservaLugar);
         }
 
@@ -155,7 +168,7 @@ namespace Reservas.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)
+        public ActionResult Edit([Bind(Include = "ID,LocalDaReserva, DataDaReserva")] ReservaLugares reservaLugar)
         {
             if (ModelState.IsValid)
             {
@@ -212,7 +225,7 @@ namespace Reservas.Controllers
             /// - guardar o ID numa var. de sessão 
             ///      (quem estiver a usar o Asp .Net Core já não tem esta ferramenta...)
             /// - outras opções...
-            Session["IdReserva"] = reservaLugar.ID;
+            Session["IdReservaLugar"] = reservaLugar.ID;
             Session["Metodo"] = "ReservaLugares/Delete";
 
             // envia para a View os dados do Cliente encontrado
@@ -227,6 +240,8 @@ namespace Reservas.Controllers
         /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
+
         public ActionResult DeleteConfirmed(int? id)
         {
 
@@ -239,7 +254,7 @@ namespace Reservas.Controllers
 
             // avaliar se o ID do Cliente que é fornecido
             // é o mesmo ID do Cliente que foi apresentado no ecrã
-            if (id != (int)Session["IdCliente"])
+            if (id != (int)Session["IdReservaLugar"])
             {
                 // há um ataque!
                 // redirecionar para a página de Index

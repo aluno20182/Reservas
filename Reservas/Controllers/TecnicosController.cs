@@ -191,12 +191,12 @@ namespace Reservas.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Tecnicos tecnico = db.Tecnicos.Find(id);
             if (tecnico == null)
             {
-                return HttpNotFound();
+                return View(tecnico);
             }
             return View(tecnico);
         }
