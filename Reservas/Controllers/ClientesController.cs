@@ -157,7 +157,6 @@ namespace Reservas.Controllers
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
                 /// 5º como o guardar no disco rígido? e onde?
-                if (haFoto) fotografia.SaveAs(caminho);
 
                 return RedirectToAction("Index");
             }
@@ -172,12 +171,12 @@ namespace Reservas.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Clientes cliente = db.Clientes.Find(id);
             if (cliente == null)
             {
-                return View();
+                return View(cliente);
             }
             return View(cliente);
         }
@@ -186,7 +185,9 @@ namespace Reservas.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,LocalEmissao,Fotografia")] Clientes cliente)
+        [Authorize(Roles = "Administrador")]
+
+        public ActionResult Edit([Bind(Include = "ID, Nome, CC, NIF, Telemovel, Email, LocalEmissao")] Clientes cliente)
         {
             if (ModelState.IsValid)
             {
@@ -258,6 +259,7 @@ namespace Reservas.Controllers
         /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "RecursosHumanos, Administrador")]
         public ActionResult DeleteConfirmed(int? id)
         {
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -30,11 +31,13 @@ namespace Reservas.Models
 
 
         [ForeignKey("Tecnico")]  //Anotações são feitas sobre o objeto que está por baixo
+        [DisplayName("Tecnico")]
         public int TecnicoFK { get; set; }  //Base de Dados
         public virtual Tecnicos Tecnico { get; set; }   // C#
 
         
         [ForeignKey("Cliente")]  //Anotações são feitas sobre o objeto que está por baixo
+        [DisplayName("Cliente")]
         public int ClienteFK { get; set; }  //Base de Dados
         public virtual Clientes Cliente { get; set; }   // C#
 
